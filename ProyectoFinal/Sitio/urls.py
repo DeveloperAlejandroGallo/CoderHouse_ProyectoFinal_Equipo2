@@ -5,5 +5,6 @@ from Sitio import views
 urlpatterns = [
     path('',views.inicio),
     path('mostrar_persona/',views.mostrar_personas, name='Personas'),
+    path('crear_curso/',views.crear_cursos, name='Curso'),
     
 ]
