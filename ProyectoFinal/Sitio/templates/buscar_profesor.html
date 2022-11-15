@@ -1,0 +1,20 @@
+<form action=''method='get'>
+    
+    <h3>Buscar nombre de profesor</h3>
+    <input type='text' name='nombre' id='nombre'>
+
+    <input type='submit' value='Buscar'>
+
+</form>
+
+{% if Profesores %}
+
+    <ul>
+    {%for profesor in profesores%}
+        <li>El profesor {{profesor.nombre}} de {{profesor.edad}} años ,con correo: {{profesor.email}} y profesion: {{profesor.profesion}} esta registado en la base de datos  </li>
+    
+    {% endfor %}
+
+{% else %}
+    <p>No existe el profesor</p>
+{% endif %}

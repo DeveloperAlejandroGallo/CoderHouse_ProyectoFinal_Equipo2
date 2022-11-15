@@ -1,7 +1,9 @@
 from django.http import HttpResponse
 from django.shortcuts import render
-from .models import Persona
+from .models import *
 from django.db import *
+from .forms import CrearProfesorForm 
+
 
 
 
@@ -15,4 +17,39 @@ def inicio(response):
 def funcion_con_parametros(response):
     lista = [1,2,3,4]
     return render(response, 'prueba.html',{'lista':lista})
+
+def crear_profesor(request):
+    
+    if request.method =='POST':
+
+        formulario=CrearProfesorForm(request.POST)
+
+        if formulario.is_valid():
+            
+            formulario_limpio=formulario.cleaned_data
+    
+            profesores=Profesor(nombre=formulario_limpio['nombre'],edad=formulario_limpio['edad'],profesion=formulario_limpio['profesion'],email=formulario_limpio['email'])
+            
+            profesores.save()
+            
+            return render(request,'index.html')
+
+    else:
+        formulario=CrearProfesorForm()
+
+    return render(request,'crear_profesor.html',{'formulario':formulario})
+
+def buscar_profesor(request):
+
+    if request.GET.get('nombre',False):
+        nombre = request.GET ['nombre'] 
+        profesores=Profesor.objects.filter(nombre__icontains=nombre)
+
+        return render (request,'buscar_profesor.html',{'Profesores':profesores})
+    
+    else:  
+        respuesta='No existe ese profesor'
+        return render(request,'buscar_profesor.html',{'respuesta': respuesta})
+
+
 
