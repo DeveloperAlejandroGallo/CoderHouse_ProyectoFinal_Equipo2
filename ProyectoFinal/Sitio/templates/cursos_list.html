@@ -1,0 +1,11 @@
+{% from curso in object_list %}
+    <ul>
+        <li>
+            {{curso}}
+
+            <button>
+                <a href="{% url 'curso_detalle.html'%}"></a>
+            </button>
+        </li>
+    </ul>
+{% endfor %}
