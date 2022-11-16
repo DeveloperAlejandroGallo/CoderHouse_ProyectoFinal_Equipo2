@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render
-from .models import *
+from .models import Curso, Persona, Profesor
 from django.db import *
 from .forms import CrearProfesorForm 
 
