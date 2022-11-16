@@ -20,7 +20,7 @@ def funcion_con_parametros(response):
 
 def crear_profesor(request):
     
-    if request.method =='POST':
+    if request.method=='POST':
 
         formulario=CrearProfesorForm(request.POST)
 
@@ -28,7 +28,12 @@ def crear_profesor(request):
             
             formulario_limpio=formulario.cleaned_data
     
-            profesores=Profesor(nombre=formulario_limpio['nombre'],edad=formulario_limpio['edad'],profesion=formulario_limpio['profesion'],email=formulario_limpio['email'])
+            profesores=Profesor(
+                nombre=formulario_limpio['nombre'],
+                apellido=formulario_limpio['apellido'],
+                edad=formulario_limpio['edad'],
+                profesion=formulario_limpio['profesion'],
+                email=formulario_limpio['email'])
             
             profesores.save()
             
@@ -42,14 +47,15 @@ def crear_profesor(request):
 def buscar_profesor(request):
 
     if request.GET.get('nombre',False):
-        nombre = request.GET ['nombre'] 
-        profesores=Profesor.objects.filter(nombre__icontains=nombre)
-
-        return render (request,'buscar_profesor.html',{'Profesores':profesores})
+        nombre = request.GET['nombre'] 
+        profesores= Profesor.objects.filter(nombre__icontains=nombre)
+        
+        if profesores.count() > 0:
+            return render (request,'buscar_profesor.html',{'profesores':profesores})
     
-    else:  
-        respuesta='No existe ese profesor'
-        return render(request,'buscar_profesor.html',{'respuesta': respuesta})
+    
+    respuesta='Sin resultados'
+    return render(request,'buscar_profesor.html',{'respuesta': respuesta})
 
 
 
