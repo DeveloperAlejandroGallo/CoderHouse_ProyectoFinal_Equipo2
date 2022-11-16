@@ -3,6 +3,7 @@ from django.shortcuts import render
 from .models import Curso, Persona, Profesor
 from django.db import *
 from .forms import CrearProfesorForm 
+from .forms import CrearCursoForm
 
 
 
@@ -59,4 +60,26 @@ def buscar_profesor(request):
     return render(request,'buscar_profesor.html',{'respuesta': respuesta})
 
 
+def crear_cursos(request):
+    
+    if request.method=='POST':
+
+        formulario=CrearCursoForm(request.POST)
+
+        if formulario.is_valid():
+            
+            formulario_limpio=formulario.cleaned_data
+    
+            curso=Curso(
+                nombre=formulario_limpio['nombre'],
+                codigo=formulario_limpio['codigo'],)
+                
+            curso.save()
+            
+            return render(request,'index.html')
+
+    else:
+        formulario=CrearCursoForm()
+
+    return render(request,'crear_curso.html',{'formulario':formulario})
 
