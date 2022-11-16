@@ -28,4 +28,7 @@ class Profesor(models.Model):
     edad = models.IntegerField()
     profesion =  models.CharField(max_length=40)
     email = models.EmailField()
+    
+    def __str__(self):
+        return f'Nombre: {self.nombre}, Apellido: {self.apellido}, Edad:{self.edad},Profesion:{self.profesion}, Correo: {self.email}'
 

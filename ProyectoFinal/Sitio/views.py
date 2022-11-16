@@ -1,9 +1,9 @@
 from django.http import HttpResponse
 from django.shortcuts import render
-from .models import *
+from .models import Curso, Persona, Profesor
 from django.db import *
-from django.views.generic import ListView
-from django.views.generic.detail import DetailView
+from .forms import CrearProfesorForm 
+
 
 
 
@@ -19,10 +19,44 @@ def funcion_con_parametros(response):
     lista = [1,2,3,4]
     return render(response, 'prueba.html',{'lista':lista})
 
-class CursoList(ListView):
-    model = Curso
-    template_name = 'cursos_list.html'
+def crear_profesor(request):
+    
+    if request.method=='POST':
 
-class CursoDetail(DetailView):
-    model = Curso
-    template_name = 'cursos_detalle.html'
+        formulario=CrearProfesorForm(request.POST)
+
+        if formulario.is_valid():
+            
+            formulario_limpio=formulario.cleaned_data
+    
+            profesores=Profesor(
+                nombre=formulario_limpio['nombre'],
+                apellido=formulario_limpio['apellido'],
+                edad=formulario_limpio['edad'],
+                profesion=formulario_limpio['profesion'],
+                email=formulario_limpio['email'])
+            
+            profesores.save()
+            
+            return render(request,'index.html')
+
+    else:
+        formulario=CrearProfesorForm()
+
+    return render(request,'crear_profesor.html',{'formulario':formulario})
+
+def buscar_profesor(request):
+
+    if request.GET.get('nombre',False):
+        nombre = request.GET['nombre'] 
+        profesores= Profesor.objects.filter(nombre__icontains=nombre)
+        
+        if profesores.count() > 0:
+            return render (request,'buscar_profesor.html',{'profesores':profesores})
+    
+    
+    respuesta='Sin resultados'
+    return render(request,'buscar_profesor.html',{'respuesta': respuesta})
+
+
+
