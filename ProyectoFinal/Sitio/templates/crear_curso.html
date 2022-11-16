@@ -7,6 +7,16 @@
     <title>CREAR CURSO</title>
 </head>
 <body>
-    Aca vamos a intentar!
+    <form action=''method='post'> {% csrf_token %}
+
+        <h3>Crear Curso</h3>
+        
+        <table> 
+            {{formulario.as_table}}
+        </table>
+    
+        <button type="submit" value="Enviar">Enviar</button>
+    
+    </form>
 </body>
 </html>

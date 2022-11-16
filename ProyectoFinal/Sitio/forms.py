@@ -9,3 +9,9 @@ class CrearProfesorForm(forms.Form):
     email=forms.EmailField()
 
 
+class CrearCursoForm(forms.Form):
+
+    nombre=forms.CharField(min_length=4, max_length=15)
+    codigo=forms.IntegerField()
+
+
