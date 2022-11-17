@@ -9,12 +9,13 @@
 - [Pre-requisitos](#prerequisites)
 - [Instalación](#installation)
 - [Uso](#usage)
+- [Historial](#history)
 - [Licencia](#license)
 - [Autores](#acknowledgements)
 
 ## Descripción
 
-Este proyecto es una entrega intermedia para el Curso de Python de CoderHouse, clase nro 34645. 
+Este proyecto es una entrega intermedia para el Proyecto final del Curso de Python de CoderHouse, clase nro 34645. 
 Pertenece al grupo nº2 de la tutoría de Pablo.
 
 ## Introducción
@@ -34,6 +35,8 @@ Clonar el repositorio desde: https://github.com/DeveloperAlejandroGallo/CoderHou
 En la termimal, situado en el directorio del proyecto:
 python manage.py runserver
 
+## Historial
+2022-11-16 Primer versión, entrega intermedia del proyecto.
 
 ## Licencia
 
