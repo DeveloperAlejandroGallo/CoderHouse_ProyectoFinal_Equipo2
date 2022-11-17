@@ -19,7 +19,7 @@
 {% elif personas %}
     <ul>
         {%for persona in personas%}
-            <li>({{dni}}): {{persona.nombre}},{{persona.apellido}} de {{persona.edad}} años ,con correo: {{persona.email}}. Nacido el: {{persona.fecha_nacimiento}} esta registado en la base de datos  </li>
+            <li>({{persona.dni}}): {{persona.nombre}},{{persona.apellido}} de {{persona.edad}} años ,con correo: {{persona.email}}. Nacido el: {{persona.fecha_nacimiento}} esta registado en la base de datos  </li>
         
         
         {% endfor %}
