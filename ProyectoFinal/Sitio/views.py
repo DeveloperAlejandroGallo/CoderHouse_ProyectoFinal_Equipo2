@@ -1,9 +1,9 @@
 from django.http import HttpResponse
 from django.shortcuts import render
-from .models import Curso, Persona, Profesor
+from .models import *
 from django.db import *
-from .forms import CrearProfesorForm 
-from .forms import CrearCursoForm
+from .forms import * 
+
 
 
 
@@ -83,3 +83,44 @@ def crear_cursos(request):
 
     return render(request,'crear_curso.html',{'formulario':formulario})
 
+###################################### Persona
+def crear_persona(request):
+    
+    if request.method=='POST':
+
+        formulario=CrearPersonaForm(request.POST)
+
+        if formulario.is_valid():
+            
+            formulario_limpio=formulario.cleaned_data
+    
+            persona=Persona(
+                nombre=formulario_limpio['nombre'],
+                apellido=formulario_limpio['apellido'],
+                edad=formulario_limpio['edad'],
+                fecha_nacimiento=formulario_limpio['fecha_nacimiento'],
+                email=formulario_limpio['email']
+                ,dni=formulario_limpio['dni']
+                )
+            
+            persona.save()
+            
+            return render(request,'index.html')
+
+    else:
+        formulario=CrearPersonaForm()
+
+    return render(request,'crear_persona.html',{'formulario':formulario})
+
+def buscar_persona_dni(request):
+
+    if request.GET.get('dni',False):
+        dni = request.GET['dni'] 
+        personas= Persona.objects.filter(dni__icontains=dni)
+        
+        if personas.count() > 0:
+            return render (request,'buscar_persona.html',{'personas':personas})
+    
+    
+    respuesta='Sin resultados'
+    return render(request,'buscar_persona.html',{'respuesta': respuesta})

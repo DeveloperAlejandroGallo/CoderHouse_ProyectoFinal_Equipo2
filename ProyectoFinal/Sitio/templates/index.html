@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Página de Inicio - Proyecto Intermedio</title>
+        <title>Blog Equipo 2</title>
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
         <!-- Bootstrap icons-->
@@ -18,70 +18,39 @@
     </head>
     <body>
         <!-- Navigation-->
-        <nav class="navbar navbar-light bg-light static-top">
+        <nav class="navbar navbar-dark bg-dark static-top">
             <div class="container">
-                <a class="btn btn-primary" href="{% url 'Personas' %}">Personas</a>
-                <a class="btn btn-primary" href="{% url 'Curso' %}">Curso</a>
-                <a class="btn btn-primary" href="{% url 'Profesores' %}">Profesores</a>
-                <a class="btn btn-primary" href="{% url 'Buscar Profesor' %}">Buscar Profesor</a>
-                
+                <a class="btn btn-outline-success my-2 my-sm-0" href="{% url 'Personas' %}">Personas</a>
+                <a class="btn btn-outline-success my-2 my-sm-0" href="{% url 'BuscarPersona' %}">Buscar Persona</a>
+                <a class="btn btn-outline-success my-2 my-sm-0" href="{% url 'ListarPersonas' %}">Listar Personas</a>
+                <a class="btn btn-outline-success my-2 my-sm-0" href="{% url 'Profesores' %}">Profesores</a>
+                <a class="btn btn-outline-success my-2 my-sm-0" href="{% url 'BuscarProfesor' %}">Buscar Profesor</a>
+                <a class="btn btn-outline-success my-2 my-sm-0" href="{% url 'Curso' %}">Cursos</a>
+                <a class="btn btn-outline-danger  my-2 my-sm-0" href="../admin">Admin</a>
             </div>
             
         </nav>
-        <h1 class="mb-5">Página de Inicio, Bienvenidos! Entrega 
-            Intermedia Alan Gutierrez, Alejandro Gallo, Alejandro Veliz</h1>
+        
         <!-- Masthead-->
-        {% comment %} <header class="masthead">
+        <h1 class="mb-5">Blog Equipo 2 - Python Coder House</h1>
+        <header class="masthead">
+            
             <div class="container position-relative">
                 <div class="row justify-content-center">
                     <div class="col-xl-6">
                         <div class="text-center text-white">
-                            <!-- Page heading-->
-                            <h1 class="mb-5">Generate more leads with a professional landing page!</h1>
-                            <!-- Signup form-->
-                            <!-- * * * * * * * * * * * * * * *-->
-                            <!-- * * SB Forms Contact Form * *-->
-                            <!-- * * * * * * * * * * * * * * *-->
-                            <!-- This form is pre-integrated with SB Forms.-->
-                            <!-- To make this form functional, sign up at-->
-                            <!-- https://startbootstrap.com/solution/contact-forms-->
-                            <!-- to get an API token!-->
-                            <form class="form-subscribe" id="contactForm" data-sb-form-api-token="API_TOKEN">
-                                <!-- Email address input-->
-                                <div class="row">
-                                    <div class="col">
-                                        <input class="form-control form-control-lg" id="emailAddress" type="email" placeholder="Email Address" data-sb-validations="required,email" />
-                                        <div class="invalid-feedback text-white" data-sb-feedback="emailAddress:required">Email Address is required.</div>
-                                        <div class="invalid-feedback text-white" data-sb-feedback="emailAddress:email">Email Address Email is not valid.</div>
-                                    </div>
-                                    <div class="col-auto"><button class="btn btn-primary btn-lg disabled" id="submitButton" type="submit">Submit</button></div>
-                                </div>
-                                <!-- Submit success message-->
-                                <!---->
-                                <!-- This is what your users will see when the form-->
-                                <!-- has successfully submitted-->
-                                <div class="d-none" id="submitSuccessMessage">
-                                    <div class="text-center mb-3">
-                                        <div class="fw-bolder">Form submission successful!</div>
-                                        <p>To activate this form, sign up at</p>
-                                        <a class="text-white" href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
-                                    </div>
-                                </div>
-                                <!-- Submit error message-->
-                                <!---->
-                                <!-- This is what your users will see when there is-->
-                                <!-- an error submitting the form-->
-                                <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">Error sending message!</div></div>
-                            </form>
+                                    <!-- Icons Grid-->
+                        {% block codigoDinamico %}
+                        
+                        {% endblock %}
+                            
                         </div>
                     </div>
                 </div>
             </div>
-        </header> {% endcomment %}
+        </header> 
         <!-- Icons Grid-->
-        {% block codigoDinamico %}
-        
-        {% endblock %}
+
         <!-- Footer-->
         <footer class="footer bg-light">
             <div class="container">

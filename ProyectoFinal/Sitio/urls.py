@@ -4,8 +4,11 @@ from Sitio import views
 
 urlpatterns = [
     path('',views.inicio),
-    path('mostrar_persona/',views.mostrar_personas, name='Personas'),
+    path('admin/', admin.site.urls, name='Admin'),
     path('crear_curso/',views.crear_cursos, name='Curso'),
     path('crear_profesor/', views.crear_profesor , name='Profesores'),
-    path('buscar_profesor/', views.buscar_profesor, name='Buscar Profesor'),
+    path('buscar_profesor/', views.buscar_profesor, name='BuscarProfesor'),
+    path('crear_persona/', views.crear_persona , name='Personas'),
+    path('buscar_persona/', views.buscar_persona_dni, name='BuscarPersona'),
+    path('mostrar_persona/',views.mostrar_personas, name='ListarPersonas'),
 ]
