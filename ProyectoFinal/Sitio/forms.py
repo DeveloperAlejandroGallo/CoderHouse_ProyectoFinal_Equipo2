@@ -15,3 +15,16 @@ class CrearCursoForm(forms.Form):
     codigo=forms.IntegerField()
 
 
+class CrearPersonaForm(forms.Form):
+    nombre = forms.CharField(max_length=40)
+    apellido = forms.CharField(max_length=40)
+    edad = forms.IntegerField()
+    fecha_nacimiento = forms.DateField()
+    email = forms.EmailField()
+    dni = forms.CharField(max_length=8)
+
+class CrearPosteoForm(forms.Form):
+    titulo = forms.CharField(max_length=50)
+    fecha = forms.DateField()
+    # imagen = forms.ImageField()
+    texto = forms.CharField(max_length=8000)
