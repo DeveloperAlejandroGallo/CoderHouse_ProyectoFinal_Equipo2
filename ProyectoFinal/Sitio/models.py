@@ -13,7 +13,7 @@ class Persona(models.Model):
     dni = models.CharField(max_length=8)
 
     def __str__(self):
-        return f'Nombre: {self.nombre}, Apellido: {self.apellido}, Edad:{self.edad}, Fecha Nacimiento:{self.fecha_nacimiento}, Correo: {self.email} y DNI: {dni}'
+        return f'Nombre: {self.nombre}, Apellido: {self.apellido}, Edad:{self.edad}, Fecha Nacimiento:{self.fecha_nacimiento}, Correo: {self.email} y DNI: {self.dni}'
 
 class Curso(models.Model):
     
