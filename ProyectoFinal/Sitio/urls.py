@@ -4,6 +4,7 @@ from Sitio import views
 
 urlpatterns = [
     path('',views.inicio),
+    path('index.html', views.inicio)
     # path('admin/', admin.site.urls, name='Admin'),
     # path('crear_curso/',views.crear_cursos, name='Curso'),
     # path('crear_profesor/', views.crear_profesor , name='Profesores'),
