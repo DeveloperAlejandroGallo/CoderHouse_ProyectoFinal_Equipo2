@@ -8,119 +8,119 @@ from .forms import *
 
 
 
-def mostrar_personas(response):
-    personas = Persona.objects.all() #Trae todos los registros de la base como una lista
+# def mostrar_personas(response):
+#     personas = Persona.objects.all() #Trae todos los registros de la base como una lista
 
-    return render(response,'personas.html',{'personas':personas})
+#     return render(response,'personas.html',{'personas':personas})
 
 def inicio(response):
-    return render(response,'index.html') #Acepta diccionarios
+    return render(response,'blog\index.html') #Acepta diccionarios
 
-def funcion_con_parametros(response):
-    lista = [1,2,3,4]
-    return render(response, 'prueba.html',{'lista':lista})
+# def funcion_con_parametros(response):
+#     lista = [1,2,3,4]
+#     return render(response, 'prueba.html',{'lista':lista})
 
-def crear_profesor(request):
+# def crear_profesor(request):
     
-    if request.method=='POST':
+#     if request.method=='POST':
 
-        formulario=CrearProfesorForm(request.POST)
+#         formulario=CrearProfesorForm(request.POST)
 
-        if formulario.is_valid():
+#         if formulario.is_valid():
             
-            formulario_limpio=formulario.cleaned_data
+#             formulario_limpio=formulario.cleaned_data
     
-            profesores=Profesor(
-                nombre=formulario_limpio['nombre'],
-                apellido=formulario_limpio['apellido'],
-                edad=formulario_limpio['edad'],
-                profesion=formulario_limpio['profesion'],
-                email=formulario_limpio['email'])
+#             profesores=Profesor(
+#                 nombre=formulario_limpio['nombre'],
+#                 apellido=formulario_limpio['apellido'],
+#                 edad=formulario_limpio['edad'],
+#                 profesion=formulario_limpio['profesion'],
+#                 email=formulario_limpio['email'])
             
-            profesores.save()
+#             profesores.save()
             
-            return render(request,'index.html')
+#             return render(request,'index.html')
 
-    else:
-        formulario=CrearProfesorForm()
+#     else:
+#         formulario=CrearProfesorForm()
 
-    return render(request,'crear_profesor.html',{'formulario':formulario})
+#     return render(request,'crear_profesor.html',{'formulario':formulario})
 
-def buscar_profesor(request):
+# def buscar_profesor(request):
 
-    if request.GET.get('nombre',False):
-        nombre = request.GET['nombre'] 
-        profesores= Profesor.objects.filter(nombre__icontains=nombre)
+#     if request.GET.get('nombre',False):
+#         nombre = request.GET['nombre'] 
+#         profesores= Profesor.objects.filter(nombre__icontains=nombre)
         
-        if profesores.count() > 0:
-            return render (request,'buscar_profesor.html',{'profesores':profesores})
+#         if profesores.count() > 0:
+#             return render (request,'buscar_profesor.html',{'profesores':profesores})
     
     
-    respuesta='Sin resultados'
-    return render(request,'buscar_profesor.html',{'respuesta': respuesta})
+#     respuesta='Sin resultados'
+#     return render(request,'buscar_profesor.html',{'respuesta': respuesta})
 
 
-def crear_cursos(request):
+# def crear_cursos(request):
     
-    if request.method=='POST':
+#     if request.method=='POST':
 
-        formulario=CrearCursoForm(request.POST)
+#         formulario=CrearCursoForm(request.POST)
 
-        if formulario.is_valid():
+#         if formulario.is_valid():
             
-            formulario_limpio=formulario.cleaned_data
+#             formulario_limpio=formulario.cleaned_data
     
-            curso=Curso(
-                nombre=formulario_limpio['nombre'],
-                codigo=formulario_limpio['codigo'],)
+#             curso=Curso(
+#                 nombre=formulario_limpio['nombre'],
+#                 codigo=formulario_limpio['codigo'],)
                 
-            curso.save()
+#             curso.save()
             
-            return render(request,'index.html')
+#             return render(request,'index.html')
 
-    else:
-        formulario=CrearCursoForm()
+#     else:
+#         formulario=CrearCursoForm()
 
-    return render(request,'crear_curso.html',{'formulario':formulario})
+#     return render(request,'crear_curso.html',{'formulario':formulario})
 
-###################################### Persona
-def crear_persona(request):
+# ###################################### Persona
+# def crear_persona(request):
     
-    if request.method=='POST':
+#     if request.method=='POST':
 
-        formulario=CrearPersonaForm(request.POST)
+#         formulario=CrearPersonaForm(request.POST)
 
-        if formulario.is_valid():
+#         if formulario.is_valid():
             
-            formulario_limpio=formulario.cleaned_data
+#             formulario_limpio=formulario.cleaned_data
     
-            persona=Persona(
-                nombre=formulario_limpio['nombre'],
-                apellido=formulario_limpio['apellido'],
-                edad=formulario_limpio['edad'],
-                fecha_nacimiento=formulario_limpio['fecha_nacimiento'],
-                email=formulario_limpio['email']
-                ,dni=formulario_limpio['dni']
-                )
+#             persona=Persona(
+#                 nombre=formulario_limpio['nombre'],
+#                 apellido=formulario_limpio['apellido'],
+#                 edad=formulario_limpio['edad'],
+#                 fecha_nacimiento=formulario_limpio['fecha_nacimiento'],
+#                 email=formulario_limpio['email']
+#                 ,dni=formulario_limpio['dni']
+#                 )
             
-            persona.save()
+#             persona.save()
             
-            return render(request,'index.html')
+#             return render(request,'index.html')
 
-    else:
-        formulario=CrearPersonaForm()
+#     else:
+#         formulario=CrearPersonaForm()
 
-    return render(request,'crear_persona.html',{'formulario':formulario})
+#     return render(request,'crear_persona.html',{'formulario':formulario})
 
-def buscar_persona_dni(request):
+# def buscar_persona_dni(request):
 
-    if request.GET.get('dni',False):
-        dni = request.GET['dni'] 
-        personas= Persona.objects.filter(dni__icontains=dni)
+#     if request.GET.get('dni',False):
+#         dni = request.GET['dni'] 
+#         personas= Persona.objects.filter(dni__icontains=dni)
         
-        if personas.count() > 0:
-            return render (request,'buscar_persona.html',{'personas':personas})
+#         if personas.count() > 0:
+#             return render (request,'buscar_persona.html',{'personas':personas})
     
     
-    respuesta='Sin resultados'
-    return render(request,'buscar_persona.html',{'respuesta': respuesta})
+#     respuesta='Sin resultados'
+#     return render(request,'buscar_persona.html',{'respuesta': respuesta})
