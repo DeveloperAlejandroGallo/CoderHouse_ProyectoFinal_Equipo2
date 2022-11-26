@@ -16,6 +16,19 @@ from .forms import *
 def inicio(response):
     return render(response,'blog\index.html') #Acepta diccionarios
 
+def blog(response):
+    return render(response,'blog\\blog.html') #Acepta diccionarios
+
+def about(response):
+    return render(response,'blog\\about.html') #Acepta diccionarios
+
+def post_details(response):
+    return render(response,'blog\post-details.html') #Acepta diccionarios
+
+def contact(response):
+    return render(response,'blog\contact.html') #Acepta diccionarios
+
+
 # def funcion_con_parametros(response):
 #     lista = [1,2,3,4]
 #     return render(response, 'prueba.html',{'lista':lista})
