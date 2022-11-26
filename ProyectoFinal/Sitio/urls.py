@@ -4,7 +4,11 @@ from Sitio import views
 
 urlpatterns = [
     path('',views.inicio),
-    path('index.html', views.inicio)
+    path('index.html', views.inicio),
+    path('blog.html', views.blog),
+    path('about.html', views.about),
+    path('post-details.html', views.post_details),
+    path('contact.html', views.contact),
     # path('admin/', admin.site.urls, name='Admin'),
     # path('crear_curso/',views.crear_cursos, name='Curso'),
     # path('crear_profesor/', views.crear_profesor , name='Profesores'),
