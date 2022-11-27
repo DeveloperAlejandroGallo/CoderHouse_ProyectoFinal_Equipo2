@@ -19,13 +19,7 @@
     <link rel="stylesheet" href="../../static/assets/css/fontawesome.css">
     <link rel="stylesheet" href="../../static/assets/css/templatemo-stand-blog.css">
     <link rel="stylesheet" href="../../static/assets/css/owl.css">
-<!--
 
-TemplateMo 551 Stand Blog
-
-https://templatemo.com/tm-551-stand-blog
-
--->
   </head>
 
   <body>
@@ -106,11 +100,11 @@ https://templatemo.com/tm-551-stand-blog
                       <h2>Dejanos un mensaje</h2>
                     </div>
                     <div class="content">
-                      <form id="contact" action="" method="post">
+                      <form id="contact" action="" method="post">{% csrf_token %}
                         <div class="row">
                           <div class="col-md-6 col-sm-12">
                             <fieldset>
-                              <input name="name" type="text" id="name" placeholder="Tu nombre" required="">
+                              <input name="nombre" type="text" id="nombre" placeholder="Tu nombre" required="">
                             </fieldset>
                           </div>
                           <div class="col-md-6 col-sm-12">
@@ -120,12 +114,12 @@ https://templatemo.com/tm-551-stand-blog
                           </div>
                           <div class="col-md-12 col-sm-12">
                             <fieldset>
-                              <input name="subject" type="text" id="subject" placeholder="Asunto">
+                              <input name="asunto" type="text" id="asunto" placeholder="Asunto">
                             </fieldset>
                           </div>
                           <div class="col-lg-12">
                             <fieldset>
-                              <textarea name="message" rows="6" id="message" placeholder="Tu mensaje..." required=""></textarea>
+                              <textarea name="mensaje" rows="6" id="mensaje" placeholder="Tu mensaje..." required=""></textarea>
                             </fieldset>
                           </div>
                           <div class="col-lg-12">

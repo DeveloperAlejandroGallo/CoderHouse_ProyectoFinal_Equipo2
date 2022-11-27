@@ -39,4 +39,14 @@ class Posteo(models.Model):
     titulo = models.CharField(max_length=50, default="")
     fecha = models.DateField()
     # imagen = models.ImageField()
-    texto = models.CharField(max_length=8000, default="")
+    texto = models.CharField(max_length=8000, default="") #aca coco no deberiamos usar el TEXTFIELD?
+
+class Contacto(models.Model):
+    nombre= models.CharField(max_length=40, default="")
+    email= models.EmailField()
+    asunto= models.CharField(max_length=40, default="")
+    mensaje=models.TextField()
+
+
+
+

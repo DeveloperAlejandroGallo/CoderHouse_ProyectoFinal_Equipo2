@@ -25,8 +25,13 @@ def about(response):
 def post_details(response):
     return render(response,'blog\post-details.html') #Acepta diccionarios
 
-def contact(response):
-    return render(response,'blog\contact.html') #Acepta diccionarios
+def contact(request):
+    if request.method == 'POST':
+        contacta= Contacto (request.POST['nombre'], request.POST['email'], request.POST['asunto'], request.POST['mensaje'])
+        contacta.save()
+        return render(request,'blog\index.html')
+
+    return render(request,'blog\contact.html') #segun coder hay que usar request
 
 
 # def funcion_con_parametros(response):
