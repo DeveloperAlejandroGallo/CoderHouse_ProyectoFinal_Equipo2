@@ -1,8 +1,15 @@
 from django.http import HttpResponse
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.views.generic import ListView
+from django.views.generic.detail import DetailView
+from django.contrib.auth.forms import AuthenticationForm
+from django.urls import reverse_lazy
+from django.contrib.auth import login,logout,authenticate 
+from django.contrib.auth.views import LoginView, LogoutView
 from django.shortcuts import render
 from .models import *
 from django.db import *
-from .forms import * 
+from .forms import *
 
 
 
@@ -27,6 +34,46 @@ def post_details(response):
 
 def contact(response):
     return render(response,'blog\contact.html') #Acepta diccionarios
+
+
+def login_request(request):
+
+    return render (request,'blog\ingresar.html', {'mensaje':f'Bienvenido'})
+
+
+    # if request.method=='POST':
+    #     form = AuthenticationForm(request,data = request.POST)
+
+    #     if form.is_valid():
+    #         usuario = form.cleaned_data.get('username')
+    #         contra = form.cleaned_data.get('password')
+
+    #         user = authenticate(username=usuario ,password=contra)
+
+    #         if user is not None:
+    #             login(request,user)
+            
+
+    #             return render (request,'blog\ingresar.html', {'mensaje':f'Bienvenido{usuario}'})
+    #         else:
+
+    #             return render (request,'blog\ingresar.html',{'mensaje'f'El usuario no existe'})
+    #     else:
+            
+    #             return render (request,'blog\ingresar.html',{'mensaje':f'Error, formulario erroneo'})
+
+class SignUpView(CreateView):
+
+    form_class = SignUpForm
+    success_url = reverse_lazy('Home')
+    template_name = 'registrarse.html'
+
+
+class AdminLoginView(LoginView):
+    template_name = 'ingresar.html'
+
+class AdminLogoutView(LogoutView):
+    template_name = 'cerrar_sesion.html'
 
 
 # def funcion_con_parametros(response):
