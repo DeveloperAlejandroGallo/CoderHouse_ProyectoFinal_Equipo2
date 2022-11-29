@@ -1,92 +1,106 @@
-jQuery( document ).ready(function( $ ) {
+(function($) {
+
+	$(document).ready(function() {
+	  $('body').addClass('js');
+	  var $menu = $('#menu'),
+	    $menulink = $('.menu-link');
+	  
+	$menulink.click(function() {
+	  $menulink.toggleClass('active');
+	  $menu.toggleClass('active');
+	  return false;
+	});});
 
 
-	"use strict";
+	videoPopup();
 
 
-        // Page loading animation
+	$('.owl-carousel').owlCarousel({
+	    loop:true,
+	    margin:30,
+	    nav:true,
+	    autoplay:true,
+		autoplayTimeout:5000,
+		autoplayHoverPause:true,
+	    responsive:{
+	        0:{
+	            items:1
+	        },
+	        550:{
+	            items:2
+	        },
+	        750:{
+	            items:3
+	        },
+	        1000:{
+	            items:4
+	        },
+	        1200:{
+	            items:5
+	        }
+	    }
+	})
 
-        $("#preloader").animate({
-            'opacity': '0'
-        }, 600, function(){
-            setTimeout(function(){
-                $("#preloader").css("visibility", "hidden").fadeOut();
-            }, 300);
-        });
-        
 
-        $(window).scroll(function() {
-          var scroll = $(window).scrollTop();
-          var box = $('.header-text').height();
-          var header = $('header').height();
+	$(".Modern-Slider").slick({
+	    autoplay:true,
+	    autoplaySpeed:10000,
+	    speed:600,
+	    slidesToShow:1,
+	    slidesToScroll:1,
+	    pauseOnHover:false,
+	    dots:true,
+	    pauseOnDotsHover:true,
+	    cssEase:'fade',
+	   // fade:true,
+	    draggable:false,
+	    prevArrow:'<button class="PrevArrow"></button>',
+	    nextArrow:'<button class="NextArrow"></button>', 
+	});
 
-          if (scroll >= box - header) {
-            $("header").addClass("background-header");
-          } else {
-            $("header").removeClass("background-header");
-          }
-        });
 
-        if ($('.owl-clients').length) {
-            $('.owl-clients').owlCarousel({
-                loop: true,
-                nav: false,
-                dots: true,
-                items: 1,
-                margin: 30,
-                autoplay: false,
-                smartSpeed: 700,
-                autoplayTimeout: 6000,
-                responsive: {
-                    0: {
-                        items: 1,
-                        margin: 0
-                    },
-                    460: {
-                        items: 1,
-                        margin: 0
-                    },
-                    576: {
-                        items: 3,
-                        margin: 20
-                    },
-                    992: {
-                        items: 5,
-                        margin: 30
-                    }
-                }
-            });
-        }
+	$("div.features-post").hover(
+	    function() {
+	        $(this).find("div.content-hide").slideToggle("medium");
+	    },
+	    function() {
+	        $(this).find("div.content-hide").slideToggle("medium");
+	    }
+	 );
 
-        if ($('.owl-banner').length) {
-            $('.owl-banner').owlCarousel({
-                loop: true,
-                nav: true,
-                dots: true,
-                items: 3,
-                margin: 10,
-                autoplay: false,
-                smartSpeed: 700,
-                autoplayTimeout: 6000,
-                responsive: {
-                    0: {
-                      items: 1,
-                      margin: 0
-                    },
-                    460: {
-                        items: 1,
-                        margin: 0
-                    },
-                    576: {
-                        items: 1,
-                        margin: 10
-                    },
-                    992: {
-                      items: 3,
-                      margin: 10
-                    }
-                }
-            });
-        }
- 
-});
+
+	$( "#tabs" ).tabs();
+
+
+	(function init() {
+	  function getTimeRemaining(endtime) {
+	    var t = Date.parse(endtime) - Date.parse(new Date());
+	    var seconds = Math.floor((t / 1000) % 60);
+	    var minutes = Math.floor((t / 1000 / 60) % 60);
+	    var hours = Math.floor((t / (1000 * 60 * 60)) % 24);
+	    var days = Math.floor(t / (1000 * 60 * 60 * 24));
+	    return {
+	      'total': t,
+	      'days': days,
+	      'hours': hours,
+	      'minutes': minutes,
+	      'seconds': seconds
+	    };
+	  }
+	  
+	  function initializeClock(endtime){
+	  var timeinterval = setInterval(function(){
+	    var t = getTimeRemaining(endtime);
+	    document.querySelector(".days > .value").innerText=t.days;
+	    document.querySelector(".hours > .value").innerText=t.hours;
+	    document.querySelector(".minutes > .value").innerText=t.minutes;
+	    document.querySelector(".seconds > .value").innerText=t.seconds;
+	    if(t.total<=0){
+	      clearInterval(timeinterval);
+	    }
+	  },1000);
+	}
+	initializeClock(((new Date()).getFullYear()+1) + "/1/1")
+	})()
+
+})(jQuery);
