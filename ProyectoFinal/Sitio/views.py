@@ -17,20 +17,22 @@ from .forms import *
 
 
 def inicio(response):
-    return render(response,'index.html') #Acepta diccionarios
+    return render(response,'index.html') 
 
 def blog(response):
-    return render(response,'blog.html') #Acepta diccionarios
+    return render(response,'blog.html')
 
 def about(response):
-    return render(response,'about.html') #Acepta diccionarios
+    return render(response,'about.html') 
 
 def post_details(response):
-    return render(response,'post-details.html') #Acepta diccionarios
+    return render(response,'post-details.html') 
 
 def contact(response):
-    return render(response,'contact.html') #Acepta diccionarios
+    return render(response,'contact.html') 
 
+def support(response):
+    return render(response,'support.html') 
 
 def login_request(request):
 
