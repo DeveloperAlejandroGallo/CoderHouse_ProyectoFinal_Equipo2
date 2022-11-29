@@ -15,52 +15,53 @@ from .forms import *
 
 
 
-# def mostrar_personas(response):
-#     personas = Persona.objects.all() #Trae todos los registros de la base como una lista
-
-#     return render(response,'personas.html',{'personas':personas})
 
 def inicio(response):
-    return render(response,'blog\index.html') #Acepta diccionarios
+    return render(response,'index.html') #Acepta diccionarios
 
 def blog(response):
-    return render(response,'blog\\blog.html') #Acepta diccionarios
+    return render(response,'blog.html') #Acepta diccionarios
 
 def about(response):
-    return render(response,'blog\\about.html') #Acepta diccionarios
+    return render(response,'about.html') #Acepta diccionarios
 
 def post_details(response):
-    return render(response,'blog\post-details.html') #Acepta diccionarios
+    return render(response,'post-details.html') #Acepta diccionarios
 
 def contact(response):
-    return render(response,'blog\contact.html') #Acepta diccionarios
+    return render(response,'contact.html') #Acepta diccionarios
 
 
 def login_request(request):
 
-    return render (request,'blog\ingresar.html', {'mensaje':f'Bienvenido'})
+    if request.method=='POST':
+        
+        form = AuthenticationForm(request,data = request.POST)
 
+        if form.is_valid():
+            usuario = form.cleaned_data.get('username')
+            contra = form.cleaned_data.get('password')
 
-    # if request.method=='POST':
-    #     form = AuthenticationForm(request,data = request.POST)
+            user = authenticate(username=usuario ,password=contra)
 
-    #     if form.is_valid():
-    #         usuario = form.cleaned_data.get('username')
-    #         contra = form.cleaned_data.get('password')
-
-    #         user = authenticate(username=usuario ,password=contra)
-
-    #         if user is not None:
-    #             login(request,user)
+            if user is not None:
+                login(request,user)
             
 
-    #             return render (request,'blog\ingresar.html', {'mensaje':f'Bienvenido{usuario}'})
-    #         else:
+                return render (request,'ingresar.html', {'mensaje':f'Bienvenido{usuario}'})
+            else:
 
-    #             return render (request,'blog\ingresar.html',{'mensaje'f'El usuario no existe'})
-    #     else:
+                return render (request,'ingresar.html',{'mensaje':f'El usuario no existe'})
+        else:
             
-    #             return render (request,'blog\ingresar.html',{'mensaje':f'Error, formulario erroneo'})
+                return render (request,'ingresar.html',{'mensaje':f'Error, formulario erroneo'})
+
+    form = AuthenticationForm()
+
+    return render (request,'registrarse.html',{'form':form})
+
+
+
 
 class SignUpView(CreateView):
 

@@ -3,14 +3,13 @@
 
 {% load static %}
 
-{% block codigoDinamico %} 
+{% block indexDinamico %} 
 
 <body>
 
 
-    <form action="" method = 'POST'
-
-        {% csrf_token %}
+    <form action="" method = 'POST'> {% csrf_token %}
+        
 
         {{form.as_p}}
 
@@ -21,3 +20,5 @@
 
 
 </body>
+
+{% endblock %}
