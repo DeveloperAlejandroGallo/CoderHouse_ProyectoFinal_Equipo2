@@ -43,7 +43,7 @@ def login_request(request):
             contra = form.cleaned_data.get('password')
 
             user = authenticate(username=usuario ,password=contra)
-
+            
             if user is not None:
                 login(request,user)
             
