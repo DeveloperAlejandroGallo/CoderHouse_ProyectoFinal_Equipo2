@@ -60,7 +60,7 @@ def login_request(request):
 
     form = AuthenticationForm()
 
-    return render (request,'registrarse.html',{'form':form})
+    return render (request,'ingresar.html',{'form':form})
 
 
 
@@ -68,7 +68,7 @@ def login_request(request):
 class SignUpView(CreateView):
 
     form_class = SignUpForm
-    success_url = reverse_lazy('Home')
+    success_url = reverse_lazy('index.html')
     template_name = 'registrarse.html'
 
 
