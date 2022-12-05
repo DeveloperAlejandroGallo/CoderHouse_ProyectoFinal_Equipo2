@@ -1,0 +1,25 @@
+En este archivo txt podemos ir poniendo comentarios o dudas.
+
+*El template que usamos tiene un formulario de contacto en el footer. No se como hacerlo funcionar, creo que no nos enseñaron, porque no se usa cargando 
+info en la base de datos. Esta pensado para usar un formato donde se envia el mensaje por email. y no encuentro clase donde nos hayan enseñado.
+Deberiamos sacarlo e incluir otra cosa.
+*Tambien en el footeer hay links rapidos, en html que no se como hacerlos funcionar tampoco.
+*Hice andar en el footer la imagen que subieron ustedes, el error estaba en el nombre del archivo
+*Por ultimo siguiente el footer, traer unos links a redes sociales y unas fotos instagram que cargue manualmente, puede servir de decoracion, pero los links
+habría que sacarlos.
+* una vez que tengamos el footer del index, hay que migrarlo a las demas paginas, uds se acuerdan como hacerlo? lo intente no me salio y tuve que
+restaurar todo.
+
+
+*La página de Nosotros (about.html) la complete con info básica, me pueden pasar lo que quiera que ponga, tiene que hablar  de nosotros y poner
+que hicimos cada uno (estoy al horno). Tambien trae para poner una foto de perfil, si me mandan alguna que les guste la agrego.
+
+*Tenemos que ponerle un nombre al blog. El template dice JACK BLOGGER, pero no se que ponerle. En la pantalla de bienvenida puste Blog Python
+
+*la pagina de contactanos (contact.html) lo mismo que el primer comentario en el footer . no lo pude hacer andar. solo traduje para que tengamos de referencia.
+encontre un tutorial en la web, pero no se si corresponde agregar algo que no nos dieron, https://learndjango.com/tutorials/django-email-contact-form
+si les interesa lo intento por ahi.
+
+* en el header hay una lupita, en la esquina superior derecha, no esta funcional, no se que opina que la saquemos, o si pensaron darle utilidad. 
+Creo que hacerlo andar va a ser complicado, porque es html.
+
