@@ -21,7 +21,7 @@ class Comment():
     post_padre = models.ForeignKey(Post, on_delete=models.CASCADE, null=True)
     titulo = models.CharField(max_length=50)
     fecha = models.DateTimeField(auto_now_add=True)
-    post = models.TextField()
+    comentario = models.TextField()
 
     def __str__(self):
         return f'{self.post_padre.titulo} | {self.usuario} | {self.titulo}'

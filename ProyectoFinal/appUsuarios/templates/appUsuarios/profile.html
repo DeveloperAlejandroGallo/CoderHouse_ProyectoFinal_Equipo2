@@ -11,7 +11,7 @@
     <form  method="POST" class="form-group">
 
         {% csrf_token %}
-
+        {% comment %} Prueba de salida de datos {% endcomment %}
         {{user.username}}
         {{userData.github}}
 

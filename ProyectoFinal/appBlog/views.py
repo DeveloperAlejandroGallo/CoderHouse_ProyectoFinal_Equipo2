@@ -23,23 +23,23 @@ def inicio(request):
 def about(request):
     return render(request,'appBlog/about.html') 
 
-
-
 def contact(request):
     return render(request,'appBlog/contact.html') 
 
 
 #Ver un post solo que tiene la opcion de hacer comentarios
-def post_details(request):
+def post_details(request, post):
     return render(request,'appBlog/post_details.html') 
 
 def post_create(request):
-    
-
     return render(request, 'appBlog/post_create.html')
 
 def post_list(request):
     return render(request,'appBlog/post_list.html')
+
+def post_find(request):
+    return render(request,'appBlog/post_find.html')
+
 
 
 

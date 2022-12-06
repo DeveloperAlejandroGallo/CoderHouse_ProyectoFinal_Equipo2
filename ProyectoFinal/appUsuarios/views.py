@@ -36,24 +36,24 @@ def user_login(request):
     loginForm = AuthenticationForm()
     return render (request,'appUsuarios/login.html',{'form':loginForm})
 
-def user_register(request):
+def user_signup(request):
 
     if( request.method == "POST"):
 
-        registerForm = UserRegisterForm(request.POST)
+        signupForm = UserRegisterForm(request.POST)
 
-        if(registerForm.is_valid()):
-            registerForm.save()
+        if(signupForm.is_valid()):
+            signupForm.save()
 
             return redirect('Login')
 
         else:
-            registerForm = UserRegisterForm()
-            return render(request, 'appUsuarios/register.html', {"registerForm": registerForm, "mensaje": ['Datos ingresados Erróneos']})
+            signupForm = UserRegisterForm()
+            return render(request, 'appUsuarios/signup.html', {"signupForm": signupForm, "mensaje": ['Datos ingresados Erróneos']})
 
     else:
-        registerForm = UserRegisterForm()
-        return render(request, 'appUsuarios/register.html', {"registerForm": registerForm}) 
+        signupForm = UserRegisterForm()
+        return render(request, 'appUsuarios/signup.html', {"signupForm": signupForm}) 
 
 @login_required
 def user_edit(request):

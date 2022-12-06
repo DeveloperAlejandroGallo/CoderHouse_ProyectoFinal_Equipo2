@@ -2,6 +2,8 @@
 
 {% load static %}
 
+{% block title%}Bienvenid@{% endblock title%}
+
 {% block cuerpo %} 
 
 <!-- revolution slider -->
@@ -11,7 +13,7 @@
               <div class="col-md-7">
                  <div id="slider_main" class="carousel slide" data-ride="carousel">
                     <!-- The slideshow -->
-                    <div class="carousel-inner">
+                    <div class="carousel-inner"> 
                        <div class="carousel-item active">
                           <img src="{% static 'appBlog/images/slider_1.png' %}" alt="#" />
                        </div>
@@ -31,11 +33,13 @@
               <div class="col-md-5">
                  <div class="full slider_cont_section">
                     <h4>Podras aprender mucho en</h4>
-                    <h3>Jack Blogger</h3>
-                    <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look</p>
+                    <h3>Blog del Programador</h3>
+                    <p>Buscando resolver aquellos aspectos que pueden presentar problemas 
+                     a la hora de hacer desarrollos aplicados a 
+                     las tecnologías con las que trabajamos actualmente.</p>
                     <div class="button_section">
-                       <a href="about.html">Read More</a>
-                       <a href="contact.html">Contact Us</a>
+                       <a href="{% url 'About' %}">Sobre Nosotros</a>
+                       <a href="{% url 'Contact' %}">Contactenos</a>
                     </div>
                  </div>
               </div>
@@ -44,4 +48,4 @@
      </div>
      <!-- end revolution slider -->
 
-{% endblock cuerpo%} 
+{% endblock cuerpo %} 
