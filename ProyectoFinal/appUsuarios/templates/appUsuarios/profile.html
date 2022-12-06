@@ -1,0 +1,29 @@
+{% extends 'appBlog/base.html' %}
+
+{% load static %}
+
+{% block title %} Perfil de {{user.username}} {% endblock title %}
+
+{% block cuerpo %}
+
+<div class="container mt-5">
+
+    <form  method="POST" class="form-group">
+
+        {% csrf_token %}
+        {% comment %} Prueba de salida de datos {% endcomment %}
+        {{user.username}}
+        {{userData.github}}
+
+        {% if mensaje %}
+            <div class="container mt-1 style= text-red">{{mensaje}}</div>
+        {% endif %}
+        <p></p>
+        <input type="submit" value="Crear usuario" class="btn btn-primary">
+
+
+
+    </form>
+</div>
+
+{% endblock cuerpo %}
