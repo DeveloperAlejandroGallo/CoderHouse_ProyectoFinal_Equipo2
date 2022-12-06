@@ -1,0 +1,30 @@
+{% extends 'appBlog/base.html' %}
+
+{% load static %}
+
+{% block title %} Register {% endblock title %}
+
+{% block cuerpo %}
+
+<div class="container mt-5">
+
+    <form  method="POST" class="form-group">
+
+        {% csrf_token %}
+
+        <table class="table">
+         {{registerForm.as_p}}
+        </table>
+
+        {% if mensaje %}
+            <div class="container mt-1 style= text-red">{{mensaje}}</div>
+        {% endif %}
+        <p></p>
+        <input type="submit" value="Crear usuario" class="btn btn-primary">
+
+
+
+    </form>
+</div>
+
+{% endblock cuerpo %}

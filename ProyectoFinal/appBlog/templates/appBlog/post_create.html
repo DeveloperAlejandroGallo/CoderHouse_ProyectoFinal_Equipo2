@@ -1,0 +1,28 @@
+{% extends 'appBlog/base.html' %}
+
+{% block title %} Crear Posteo {% endblock title %}
+
+{% load static %}
+
+{% block cuerpo %}
+<div class="container mt-5">
+
+    <form action="" method="POST" class="form-group" enctype="multipart/form-data"> {% csrf_token %}
+
+        <table class="table">
+    
+        {{postForm.as_table}}
+    
+        </table>
+
+        <input type="submit", value="Postear", class="btn btn-primary">
+
+        <p></p>
+
+    </div>    
+
+    </form>
+
+
+
+{% endblock main_content %}
