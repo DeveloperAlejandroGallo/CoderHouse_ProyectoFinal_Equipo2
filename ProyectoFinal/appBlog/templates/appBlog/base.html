@@ -10,7 +10,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <meta name="viewport" content="initial-scale=1, maximum-scale=1">
       <!-- site metas -->
-      <title>{%block title%}Blog Del Programador{%enblock title%}</title>
+      <title>{%block title%}Blog Del Programador{%endblock title%}</title>
       <meta name="keywords" content="">
       <meta name="description" content="">
       <meta name="author" content="">
@@ -30,7 +30,7 @@
                <div class="col-lg-3 logo_section">
                   <div class="full">
                      <div class="center-desk">
-                        <div class="logo"> <a href="{% url 'inicio' %}"><img src="{% static 'appBlog/images/Python.png' %}" alt="#"></a> </div>
+                        <div class="logo"> <a href="{% url 'Index' %}"><img src="{% static 'appBlog/images/Python.png' %}" alt="#"></a> </div>
                      </div>
                   </div>
                </div>
@@ -42,10 +42,10 @@
                               {% comment %} {%if request.user.is_superuser%}
                               <li><a class="nav-link" href="/admin/">Admin</a></li>
                               {%endif%} {% endcomment %}
-                              <li class="active"><a href="{% url 'Inicio' %}">Home</a></li>
+                              <li class="active"><a href="{% url 'Index' %}">Home</a></li>
                               <li><a href="{% url 'About' %}">Nosotros</a></li>
-                              <li><a href="{% url 'Blog Posts' %}">Ver Posteos</a></li>
-                              <li><a href="{% url 'Contacto' %}">Contacto</a></li>
+                              <li><a href="{% url 'Post List' %}">Ver Posteos</a></li>
+                              <li><a href="{% url 'Contact' %}">Contacto</a></li>
                               {%if request.user.is_authenticated%}
                                  <li><a id="avatar-btn" class="nav-link" href="{% url 'Profile' %}">Perfil</a></li>
                                  <li><a id="avatar-btn" class="nav-link" href="{% url 'Post Create' %}">Crear Post</a></li>
