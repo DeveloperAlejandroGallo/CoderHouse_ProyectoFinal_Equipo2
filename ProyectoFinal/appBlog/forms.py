@@ -1,5 +1,6 @@
 from django import forms
 from django.utils import timezone
+#from .models import Contact
 
 class PostCrearForm(forms.Form):
     usuario = forms.CharField(max_length=50)
@@ -15,6 +16,10 @@ class PostCommentForm(forms.Form):
     fecha = forms.DateTimeField()
     post = forms.Textarea()
 
-
+#class ContactForm(forms.Form):
+#    email = forms.EmailField()
+#    asunto = forms.CharField(max_length=250)
+#    mensaje = forms.CharField(widget=forms.Textarea)
+# COMENTO PARA PROBAR OTRO METODO
 
 

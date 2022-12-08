@@ -43,25 +43,24 @@ def post_find(request):
     return render(request,'appBlog/post_find.html')
 
 
-def contactView(request):
-    if request.method == "GET":
-        form = ContactForm()
-    else:
-        form = ContactForm(request.POST)
-        if form.is_valid():
-            nombre = form.cleaned_data["nombre"]
-            asunto = form.cleaned_data["asunto"]
-            email = form.cleaned_data["email"]
-            mensaje = form.cleaned_data['mensaje']
-            try:
-                send_mail(asunto, mensaje, email, ["aleveliz75@gmail.com"])
-            except BadHeaderError:
-                return HttpResponse("Inválido.")
-            return redirect("Enviado")
-    return render(request, "contact.html", {"form": form})
+# def contactView(request):
+#     if request.method == "GET":
+#         form = ContactForm()
+#     else:
+#         form = ContactForm(request.POST)
+#         if form.is_valid():
+#             asunto = form.cleaned_data["asunto"]
+#             email = form.cleaned_data["email"]
+#             mensaje = form.cleaned_data['mensaje']
+#             try:
+#                 send_mail(asunto, email, mensaje, ["aleveliz75@gmail.com"])
+#             except BadHeaderError:
+#                 return HttpResponse("Inválido.")
+#             return redirect("Enviado")
+#     return render(request, "appBlog/contact.html", {"form": form})
 
-def successView(request):
-    return HttpResponse("Enviado! Gracias por tu mensaje!.")
+#def successView(request):
+#    return HttpResponse("Enviado! Gracias por tu mensaje!.")
 
 # class SignUpView(CreateView):
 

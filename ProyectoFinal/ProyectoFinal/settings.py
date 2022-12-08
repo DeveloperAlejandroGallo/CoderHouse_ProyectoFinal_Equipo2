@@ -131,5 +131,11 @@ LOGIN_URL = "/accounts/login/"
 #URL to media
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-DEFAULT_FROM_EMAIL = "aleveliz75@gmail.com"
-EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+#ESTO PARA FUNCIONAR EL CONTACTO Y ENVIE MAILS REALES
+# EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+# DEFAULT_FROM_EMAIL = "aleveliz75@gmail.com"
+# EMAIL_HOST = "smtp.sendgrid.net"
+# EMAIL_HOST_USER = "apikey"
+# EMAIL_HOST_PASSWORD = "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"
+# EMAIL_PORT = 587 
+# EMAIL_USE_TLS = True
