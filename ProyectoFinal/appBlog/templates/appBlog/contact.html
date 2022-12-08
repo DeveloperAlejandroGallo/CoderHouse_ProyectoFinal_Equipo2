@@ -19,18 +19,21 @@
    </div>
    <!-- Contact Form section -->
    <section class="layout_padding">
+   
       <div class="container">
          <div class="row">
             <div class="col-md-12">
                <div class="full comment_form">
-                  <form action="index.html">
+                  <form method="post"> {% csrf_token %}
+                     {{ form.as_p }}
+                     <div class="form-actions">
                      <fieldset>
                         <div class="col-md-12">
                            <div class="row">
                               <div class="col-md-6">
-                                 <input type="text" name="name" placeholder="Nombre" required="#" />
+                                 <input type="text" name="nombre" placeholder="Nombre" required="#" />
                                  <input type="email" name="email" placeholder="Email" required="#" />
-                                 <input type="text" name="subject" placeholder="Asunto" required="#" />
+                                 <input type="text" name="asunto" placeholder="Asunto" required="#" />
                               </div>
                               <div class="col-md-6">
                                  <textarea class="wdt" placeholder="Comentario"></textarea>
@@ -39,11 +42,12 @@
                            <div class="row margin_top_30">
                               <div class="col-md-12">
                                  <div class="center">
-                                    <button>Enviar</button>
+                                    <button type="submit" class="form-actions">Enviar</button>
                                  </div>
                               </div>
                            </div>
                         </div>
+                     </div>
                      </fieldset>
                   </form>
                </div>
@@ -51,6 +55,7 @@
          </div>
       </div>
    </section>
+   
    <!-- end section -->
    <!-- Contact End -->
    {% endblock cuerpo %} 

@@ -131,3 +131,5 @@ LOGIN_URL = "/accounts/login/"
 #URL to media
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+DEFAULT_FROM_EMAIL = "aleveliz75@gmail.com"
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"

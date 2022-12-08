@@ -1,6 +1,8 @@
 from django.shortcuts import redirect, render
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from django.core.mail import send_mail, BadHeaderError
+from django.http import HttpResponse, HttpResponseRedirect
 
 from appBlog.forms import *
 from appBlog.models import *
@@ -41,7 +43,25 @@ def post_find(request):
     return render(request,'appBlog/post_find.html')
 
 
+def contactView(request):
+    if request.method == "GET":
+        form = ContactForm()
+    else:
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            nombre = form.cleaned_data["nombre"]
+            asunto = form.cleaned_data["asunto"]
+            email = form.cleaned_data["email"]
+            mensaje = form.cleaned_data['mensaje']
+            try:
+                send_mail(asunto, mensaje, email, ["aleveliz75@gmail.com"])
+            except BadHeaderError:
+                return HttpResponse("Inválido.")
+            return redirect("Enviado")
+    return render(request, "contact.html", {"form": form})
 
+def successView(request):
+    return HttpResponse("Enviado! Gracias por tu mensaje!.")
 
 # class SignUpView(CreateView):
 

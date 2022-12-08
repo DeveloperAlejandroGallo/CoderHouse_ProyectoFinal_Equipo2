@@ -11,4 +11,8 @@ urlpatterns = [
     path('post_details/<post>', post_details, name='Post Details'),
     path('post_list', post_list, name='Post List'),
     path('post_find', post_list, name='Post Find'),
+    path("contact/", contactView, name="contact"),
+    path("success/", successView, name="success"),
 ]
+
+    
