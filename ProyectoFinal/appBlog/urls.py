@@ -3,6 +3,7 @@ from django.urls import path
 from appBlog.views import *
 from django.contrib.auth import login,logout
 #from .views import contactView, successView
+# from .views import successView
 
 urlpatterns = [
     path('',inicio, name='Index'),
@@ -13,7 +14,7 @@ urlpatterns = [
     path('post_list', post_list, name='Post List'),
     path('post_find', post_list, name='Post Find'),
     #path('contact', contactView, name='contact'),
-    #path('success', successView, name='success'),
+    # path('success', successView, name='success'),
 ]
 
     

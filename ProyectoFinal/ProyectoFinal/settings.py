@@ -136,6 +136,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # DEFAULT_FROM_EMAIL = "aleveliz75@gmail.com"
 # EMAIL_HOST = "smtp.sendgrid.net"
 # EMAIL_HOST_USER = "apikey"
-# EMAIL_HOST_PASSWORD = "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"
+# EMAIL_HOST_PASSWORD = "MICLAVELABORREPORQUEMERETARON"
 # EMAIL_PORT = 587 
 # EMAIL_USE_TLS = True

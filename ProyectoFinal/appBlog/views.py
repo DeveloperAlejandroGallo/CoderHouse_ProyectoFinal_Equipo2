@@ -59,8 +59,8 @@ def post_find(request):
 #             return redirect("Enviado")
 #     return render(request, "appBlog/contact.html", {"form": form})
 
-#def successView(request):
-#    return HttpResponse("Enviado! Gracias por tu mensaje!.")
+# def successView(request):
+#     return HttpResponse("Enviado! Gracias por tu mensaje!.")
 
 # class SignUpView(CreateView):
 
