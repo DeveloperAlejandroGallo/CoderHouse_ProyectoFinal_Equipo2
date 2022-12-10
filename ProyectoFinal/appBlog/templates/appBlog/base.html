@@ -46,12 +46,23 @@
                               <li><a href="{% url 'About' %}">Nosotros</a></li>
                               <li><a href="{% url 'Post List' %}">Ver Posteos</a></li>
                               <li><a href="{% url 'Contact' %}">Contacto</a></li>
-                              {%if request.user.is_authenticated%}
-                                 <li><a id="avatar-btn" class="nav-link" href="{% url 'Profile' %}">Perfil</a></li>
-                                 <li><a id="avatar-btn" class="nav-link" href="{% url 'Post Create' %}">Crear Post</a></li>
-                              {%else%}
-                                 <li><a href="{% url 'Login' %}">Ingresar</a></li>
-                              {%endif%}
+                        {%if request.user.is_authenticated%}
+                        <li><a id="avatar-btn" class="nav-link" href="{% url 'Profile' request.user %}">Perfil</a></li>
+                        <li><a id="avatar-btn" class="nav-link" href="{% url 'Post Create' %}">Crear Post</a></li>
+                        </a>
+                        {%endif%} 
+                        {%if request.user.is_superuser%}
+                        <li class="nav-item"><a class="nav-link" href="/admin/">Admin</a></li>
+                        {%endif%}
+
+                        {%if not request.user.is_authenticated%}
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'Login' %}">Iniciar sesión</a></li>
+                        
+                        {%else%}
+                        
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'Logout' %}">Cerrar sesion</a></li>    
+
+                        {% endif %}
                               <li><a href="{% url 'Post Find' %}"><img src="{% static 'appBlog/images/search_icon.png' %}" alt="#" /></a></li>
                            </ul>
                         </nav>
