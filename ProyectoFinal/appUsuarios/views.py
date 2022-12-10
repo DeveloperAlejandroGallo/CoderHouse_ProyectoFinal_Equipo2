@@ -19,19 +19,19 @@ def user_login(request):
         loginForm = AuthenticationForm(request,data = request.POST)
 
         if loginForm.is_valid():
-            usuario = loginForm.cleaned_data.get('username')
+            email = loginForm.cleaned_data.get('email')
             contra = loginForm.cleaned_data.get('password')
 
-            user = authenticate(username=usuario ,password=contra)
+            user = authenticate(email=email ,password=contra)
             
             if user is not None:
                 login(request,user)
-                return render (request,'appBlog/index.html', {'user':usuario,'form':loginForm})
+                return render (request,'appBlog/index.html', {'email':email,'form':loginForm})
             else:
-                return render (request,'appUsuarios/login.html',{'mensaje':f'El usuario no existe'})
+                return render (request,'appUsuarios/login.html',{'mensaje':'El usuario no existe'})
         else:
             loginForm = AuthenticationForm()
-            return render (request,'appUsuarios/login.html',{'form':loginForm,'mensaje':f'Usuario o Contraseña incorrectos'})
+            return render (request,'appUsuarios/login.html',{'form':loginForm,'mensaje':'Usuario o Contraseña incorrectos'})
 
     loginForm = AuthenticationForm()
     return render (request,'appUsuarios/login.html',{'form':loginForm})
