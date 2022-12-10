@@ -1,47 +1,43 @@
-![License](https://img.shields.io/github/license/DeveloperAlejandroGallo/CoderHouse_ProyectoFinal_Equipo2.svg?style=for-the-badge) ![Repo Size](https://img.shields.io/github/languages/code-size/DeveloperAlejandroGallo/CoderHouse_ProyectoFinal_Equipo2.svg?style=for-the-badge) ![TOP_LANGUAGE](https://img.shields.io/github/languages/top/DeveloperAlejandroGallo/CoderHouse_ProyectoFinal_Equipo2.svg?style=for-the-badge) ![FORKS](https://img.shields.io/github/forks/DeveloperAlejandroGallo/CoderHouse_ProyectoFinal_Equipo2.svg?style=for-the-badge&social) ![Stars](https://img.shields.io/github/stars/DeveloperAlejandroGallo/CoderHouse_ProyectoFinal_Equipo2.svg?style=for-the-badge)
-    
-# Entrega Intermedia Proyecto Final
 
-## Tabla de Contenidos
+# Entrega Final - Web Blog Programación
 
-- [Descripción](#description)
-- [Introducción](#getting-started)
-- [Pre-requisitos](#prerequisites)
-- [Instalación](#installation)
-- [Uso](#usage)
-- [Historial](#history)
-- [Licencia](#license)
-- [Autores](#acknowledgements)
+Entrega final de proyecto de alumnos del curso de Python, dictado por CoderHouse.
+Profesor Daniel Ochoa, Comisión #34365, Tutor Pablo Schvager, Grupo 2.
 
-## Descripción
 
-Este proyecto es una entrega intermedia para el Proyecto final del Curso de Python de CoderHouse, clase nro 34645. 
-Pertenece al grupo nº2 de la tutoría de Pablo.
+## Funcionalidades
 
-## Introducción
+- Login y Registro de Usuarios
+- Crear, Editar y Eliminar Posts
+- Comentarios en Posts
+- Contacto Web vía Email
+- Página de About Us
+- Completar con más cosas
 
-En este proyecto, incorporamos todas las funcionalidades de acuerdo a los conocimientos adquiridos en el curso. Al ser una entrega intermedia, todavía no está definido el uso del blog final
 
-### Prerequisitos
-
-Python 3.7, Django, Entorno Virtual
-
-### Instalación	
+## Instalación
 
 Clonar el repositorio desde: https://github.com/DeveloperAlejandroGallo/CoderHouse_ProyectoFinal_Equipo2
 
-## Uso
+```bash
+  cd ProyectoFinal
+  python manage.py runserver
+```
+    
+## Prerequisitos
 
-En la termimal, situado en el directorio del proyecto:
-python manage.py runserver
+Python 3.7, Django, 
+(Recomendado correr en entorno virtual)
+
 
 ## Historial
 2022-11-16 Primer versión, entrega intermedia del proyecto.
 
-## Licencia
-
-<a href="https://choosealicense.com/licenses/unlicense/"><img src="https://raw.githubusercontent.com/johnturner4004/readme-generator/master/src/components/assets/images/unlicense.svg" height=40 />The Unlicense</a>
-
+2022-12-13 Entrega final del Proyecto
 ## Autores
 
-Alan Gutierrez, Alejandro Gallo, Alejandro Véliz
+- [@DeveloperAlejandroGallo](https://github.com/DeveloperAlejandroGallo) (Alejandro Gallo)
+- [@Alan-JG](https://github.com/Alan-JG) (Alan Gutierrez)
+- [@aleveliz75](https://github.com/Aleveliz75) (Alejandro Véliz)
+
+
