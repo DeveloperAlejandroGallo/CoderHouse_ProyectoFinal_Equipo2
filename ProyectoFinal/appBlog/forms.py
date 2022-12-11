@@ -1,5 +1,9 @@
 from django import forms
 from django.utils import timezone
+from ckeditor.fields import RichTextField 
+from ckeditor.widgets import CKEditorWidget
+
+from appBlog.models import Post
 #from .models import Contact
 
 class PostCrearForm(forms.Form):
@@ -8,13 +12,17 @@ class PostCrearForm(forms.Form):
     subtitulo = forms.CharField(max_length=100)
     fecha = forms.DateField()
     imagen = forms.ImageField()
-    texto = forms.Textarea()
+    texto = CKEditorWidget()
+
+    class Meta:
+        model = Post
+        fields = '__all__'
 
 class PostCommentForm(forms.Form):
     usuario = forms.CharField(max_length=50)
     titulo = forms.CharField(max_length=50)
     fecha = forms.DateTimeField()
-    post = forms.Textarea()
+    post = CKEditorWidget()
 
 #class ContactForm(forms.Form):
 #    email = forms.EmailField()

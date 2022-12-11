@@ -3,6 +3,7 @@ import datetime
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib.auth.models import User
 from django.utils import timezone
+from ckeditor.fields import RichTextField 
 
 
 class Post(models.Model):
@@ -11,7 +12,7 @@ class Post(models.Model):
     subtitulo = models.CharField(max_length=100)
     fecha = models.DateField()
     imagen = models.ImageField()
-    texto = models.TextField()
+    texto = RichTextField(blank=True, null=True)
     likes = models.IntegerField()
 
     def __str__(self) -> str:
@@ -23,7 +24,7 @@ class Comment(models.Model):
     post_padre = models.ForeignKey(Post, on_delete=models.CASCADE, null=True)
     titulo = models.CharField(max_length=50)
     fecha = models.DateField()
-    comentario = models.TextField()
+    comentario = RichTextField(blank=True, null=True)
     likes = models.IntegerField()
 
     def __str__(self):

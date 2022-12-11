@@ -39,15 +39,15 @@
                      <div class="limit-box">
                         <nav class="main-menu">
                            <ul class="menu-area-main">
-                              {% comment %} {%if request.user.is_superuser%}
+                              {%if request.user.is_superuser%}
                               <li><a class="nav-link" href="/admin/">Admin</a></li>
-                              {%endif%} {% endcomment %}
-                              <li class="active"><a href="{% url 'Index' %}">Home</a></li>
+                              {%endif%}
+                              <li><a href="{% url 'Index' %}">Home</a></li>
                               <li><a href="{% url 'About' %}">Nosotros</a></li>
                               <li><a href="{% url 'Post List' %}">Ver Posteos</a></li>
                               <li><a href="{% url 'Contact' %}">Contacto</a></li>
                               {%if request.user.is_authenticated%}
-                                 <li><a id="avatar-btn" class="nav-link" href="{% url 'Profile' %}">Perfil</a></li>
+                                 <li><a id="avatar-btn" class="nav-link" href="{% url 'Profile' request.user %}">Perfil</a></li>
                                  <li><a id="avatar-btn" class="nav-link" href="{% url 'Post Create' %}">Crear Post</a></li>
                               {%else%}
                                  <li><a href="{% url 'Login' %}">Ingresar</a></li>
