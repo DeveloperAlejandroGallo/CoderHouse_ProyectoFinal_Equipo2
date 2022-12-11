@@ -1,0 +1,45 @@
+<DOCTYPE html>
+    <html lang='en'>
+    <head>
+      {% load static %}
+       <meta charset=UTF-8>
+       <meta name-'viewsport' content='width=device-width', initial=scale=1.0>
+       <meta hhtp-equiv='X-UA-Compatible' content='ie=edge'>
+       <link rel="stylesheet" href="{% static 'appUsuarios/css/bootstrap.min.css' %}">
+      <!-- style css -->
+      <link rel="stylesheet" href="{% static 'appUsuarios/css/style.css' %}">
+      <!-- Responsive-->
+      <link rel="stylesheet" href="{% static 'appUsuarios/css/responsive.css' %}">
+       <title>Registro de usuario</title>
+    </head>
+    <body>
+    {% load crispy_forms_tags %}
+    
+        <div class='container'>
+    
+          <div class='row'>
+              <div class='col-12 col-md-6 offset-md-3'>
+    
+                <div class='card'>
+                  <div class='card-boy'>
+                    <h2>Ingresa tus datos</h2>
+                    <hr>
+                    <form action='' method='POST'>
+    
+                    {% csrf_token %}
+                    {{form | crispy }}
+                    <input type='submit' value='registrar' class='btn btn-success float-right'>
+                    </form>
+                  </div>
+    
+                </div>
+    
+              </div>
+    
+          </div>
+          
+        </div>
+      </body>
+
+
+

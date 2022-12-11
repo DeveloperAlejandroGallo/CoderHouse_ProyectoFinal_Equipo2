@@ -2,13 +2,15 @@ from django.contrib import admin
 from django.urls import path
 from appUsuarios.views import *
 from django.contrib.auth.views import LogoutView
+from .views import registro
 
 urlpatterns = [
-    path('accounts/login/', user_login, name='Login'),
-    path('accounts/singup/', user_signup, name='SignUp'),
-    path('accounts/logout/', LogoutView.as_view(template_name='appUsuarios/logout.html'), name='Logout'),
+    path('signup/',registro, name='Registro'),
+    # path('accounts/login/', user_login, name='Login'),
+    # path('accounts/singup/', user_signup, name='SignUp'),
+    # path('accounts/logout/', LogoutView.as_view(template_name='appUsuarios/logout.html'), name='Logout'),
 
-    path('accounts/edit_user/<usuario>', user_edit, name="Edit Profile"),
+    # path('accounts/edit_user/<usuario>', user_edit, name="Edit Profile"),
 
-    path('accounts/profile/<usuario>', user_view, name='Profile'),
+    # path('accounts/profile/<usuario>', user_view, name='Profile'),
 ]
