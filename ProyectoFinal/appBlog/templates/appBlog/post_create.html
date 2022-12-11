@@ -5,22 +5,34 @@
 {% load static %}
 
 {% block cuerpo %}
+<!-- section --> 
+<div class="About-bg">
+   <div class="container">
+      <div class="row">
+         <div class="col-md-12">
+            <div class="aboutheading">
+               <h3>Crear <span class="orange_color">Posteo</span></h3>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
 <div class="container mt-5">
 
-    <form action="" method="POST" class="form-group" enctype="multipart/form-data"> {% csrf_token %}
-
+    <form action="" method="POST" class="form-group" enctype="multipart/form-data"> 
+      {% csrf_token %}
         <table class="table">
     
-        {{  postCreateForm.media  }}
-        {{  postCreateForm.as_p  }}
+        {% comment %} {{  postCreateForm.media  }} {% endcomment %}
+        {{  postCreateForm.as_table  }}
 
         </table>
 
         <input type="submit", value="Postear", class="btn btn-primary">
+        
+      </form>
 
-      </div>    
-
-    </form>
+</div>    
 
 
 

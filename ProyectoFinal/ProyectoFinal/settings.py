@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
+import tempfile
 import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -120,7 +121,6 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-STATIC_URL = 'static/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
@@ -130,22 +130,82 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 #URL login
 LOGIN_URL = "/accounts/login/"
 
-#URL to media
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-MEDIA_URL = os.path.join(BASE_DIR, 'media') + '/'
-
 #CK Editor
-STATIC_ROOT = '/static/'
-CKEDITOR_BASEPATH = "/static/ckeditor/ckeditor/"
-CKEDITOR_UPLOAD_PATH = 'uploads/'
-CKEDITOR_CONFIGS = {
-    'awesome_ckeditor': {
-        'toolbar': 'full',
+
+STATIC_URL = "/static/"
+MEDIA_URL = "/media/"
+STATIC_ROOT = os.path.join(tempfile.gettempdir(), "ck_static")
+MEDIA_ROOT = os.path.join(tempfile.gettempdir(), "ck_media")
+
+from ckeditor.configs import DEFAULT_CONFIG  # noqa
+
+
+CKEDITOR_UPLOAD_PATH = "uploads/"
+CKEDITOR_IMAGE_BACKEND = "ckeditor_uploader.backends.PillowBackend"
+CKEDITOR_THUMBNAIL_SIZE = (300, 300)
+CKEDITOR_IMAGE_QUALITY = 40
+CKEDITOR_BROWSE_SHOW_DIRS = True
+CKEDITOR_ALLOW_NONIMAGE_FILES = True
+
+CUSTOM_TOOLBAR = [
+    {
+        "name": "document",
+        "items": [
+            "Styles",
+            "Format",
+            "Bold",
+            "Italic",
+            "Underline",
+            "Strike",
+            "-",
+            "TextColor",
+            "BGColor",
+            "-",
+            "JustifyLeft",
+            "JustifyCenter",
+            "JustifyRight",
+            "JustifyBlock",
+        ],
     },
-        'default': {
-        'toolbar': 'full',
-        'height': 300,
-        'width': 300,
+    {
+        "name": "widgets",
+        "items": [
+            "Undo",
+            "Redo",
+            "-",
+            "NumberedList",
+            "BulletedList",
+            "-",
+            "Outdent",
+            "Indent",
+            "-",
+            "Link",
+            "Unlink",
+            "-",
+            "Image",
+            "CodeSnippet",
+            "Table",
+            "HorizontalRule",
+            "Smiley",
+            "SpecialChar",
+            "-",
+            "Blockquote",
+            "-",
+            "ShowBlocks",
+            "Maximize",
+        ],
+    },
+]
+
+CKEDITOR_CONFIGS = {
+    "default": DEFAULT_CONFIG,
+    "my-custom-toolbar": {
+        "skin": "moono-lisa",
+        "toolbar": CUSTOM_TOOLBAR,
+        "toolbarGroups": None,
+        "extraPlugins": ",".join(["image2", "codesnippet"]),
+        "removePlugins": ",".join(["image"]),
+        "codeSnippet_theme": "xcode",
     },
 }
 

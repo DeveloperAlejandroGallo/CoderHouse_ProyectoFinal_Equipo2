@@ -1,5 +1,5 @@
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from appBlog.views import *
 from django.contrib.auth import login,logout
 #from .views import contactView, successView
@@ -7,6 +7,7 @@ from django.contrib.auth import login,logout
 
 urlpatterns = [
     path('',inicio, name='Index'),
+    path('ckeditor/', include('ckeditor_uploader.urls')),
     path('about', about, name = 'About'),
     path('contact', contact, name='Contact'),
     path('post_create', post_create, name='Post Create'),
@@ -15,6 +16,6 @@ urlpatterns = [
     path('post_find', post_list, name='Post Find'),
     #path('contact', contactView, name='contact'),
     # path('success', successView, name='success'),
-]
+] 
 
     
