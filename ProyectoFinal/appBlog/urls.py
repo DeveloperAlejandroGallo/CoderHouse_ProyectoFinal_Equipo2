@@ -1,7 +1,7 @@
 from django.contrib import admin
-from django.urls import path
+from django.urls import path,include
 from appBlog.views import *
-from django.contrib.auth import login,logout
+from django.contrib.auth import login,logout 
 #from .views import contactView, successView
 # from .views import successView
 
@@ -15,6 +15,7 @@ urlpatterns = [
     path('post_find', post_list, name='Post Find'),
     #path('contact', contactView, name='contact'),
     # path('success', successView, name='success'),
+    
 ]
 
     

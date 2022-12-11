@@ -6,24 +6,65 @@
 
 {% block cuerpo %}
 
-<div class="container mt-5">
+<div class="container-fluid mb-5">
+    <p></p>
+    <div class="container-fluid mb-5">
+        <div class="row">
+            <div class="container-fluid mb-5">
+                <div class="row">
+                    <div class="row">    
+                        {% if request.user.is_superuser %}
+                        <div class="cl-sm-2">
+                            <div class="user-image-container mb-2">
+                                <div style="text-align: left;">
+                                    <a class="btn btn-link btn-sm" href="{% url 'addAvatar' %}">Actualizar imagen</a>
+                                </div>
+                            </div>
+                        {% endif %}
+                        </div>
+                        <div class="col-sm-8 d-flex align-items-center"> 
+                            <div class="about-me">                    
+                                <div class="d-flex justify-content-start align-items-center"> 
 
-    <form  method="POST" class="form-group">
+                                    {%if user.first_name and user.last_name%}
+                                    <h2><strong>{{user.first_name}} {{user.last_name}}</strong></h2>
+                                    {%else%}
+                                    <h2><strong>Nombre/s Apellido/s</strong></h2>
+                                    {%endif%}
+                                    <p></p>
+                                    <div style="text-align: left;">
+                                        {% if request.user.username == user.username %}
+                                        <a class="btn btn-xs" href="{% url 'EditarPerfil' %}">Editar</a>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                <div class="text-muted mb-3">{{user.username}} | {{user.email}}</div>
+                            </div>
+                        </div>
 
-        {% csrf_token %}
-        {% comment %} Prueba de salida de datos {% endcomment %}
-        {{user.username}}
-        {{userData.github}}
+                        <div id="description" class="container-fluid mb-5">
+                            <p>{{bio}}<p>
+                            <hr></hr>
+                            <table style="width: 18%;">
 
-        {% if mensaje %}
-            <div class="container mt-1 style= text-red">{{mensaje}}</div>
-        {% endif %}
-        <p></p>
-        <input type="submit" value="Crear usuario" class="btn btn-primary">
-
-
-
-    </form>
+                                {%if instagram%}
+                                <th><a href="{{instagram}}"><img id="img" class="img rounded-circle" alt="Instagram icon" height="32" width="32" src="{% static 'appUsers/assets/instagram.ico' %}"></img></a></th>
+                                {%endif%}
+                                {%if facebook%}
+                                <th><a href="{{facebook}}"><img id="img" class="img rounded-circle" alt="Facebook icon" height="32" width="32" src="{% static 'appUsers/assets/facebook.ico' %}"></img></a></th>
+                                {%endif%}
+                                {%if twitter%}
+                                <th><a href="{{twitter}}"><img id="img" class="img rounded-circle" alt="Twitter icon" height="32" width="32" src="{% static 'appUsers/assets/twitter.ico' %}"></img></a></th>
+                                {%endif%}
+                                <th><a href="{% url 'Chat' user.username %}"><img id="img" class="img rounded-circle" alt="Chat icon" height="32" width="32" src="{% static 'appUsers/assets/chat.ico' %}"></img></a></th>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> 
+    </div>
 </div>
+
 
 {% endblock cuerpo %}

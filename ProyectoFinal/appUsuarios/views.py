@@ -4,9 +4,10 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from appUsuarios.forms import CustomUserCreationForm
+from appUsuarios.forms import CustomUserCreationForm ,Avatar_form,Chat_form
 from appUsuarios.models import *
 from django.contrib import messages 
+from appUsuarios.models import Avatar, UserAbout , Chat 
 
 
 
@@ -29,8 +30,11 @@ def registro(request):
             return redirect('Index')
         data['form']= formulario
     return render (request, 'registration/signup.html', data)
+    
 
-# def user_login(request):
+def user_login(request):
+    template_name = 'login.html'
+    return render(request,'registration/login.html')
 
 #     if request.method=='POST':
         
@@ -136,5 +140,207 @@ def user_view(request):
         return render('appUsuarios/profile.html', {'user':user,'mensaje':"Informacion no disponible aun."})
     else:
         return render('appUsuarios/profile.html', {'user':user,'userData':userData})
+
+
+@login_required
+def add_avatar(request):
+
+    if request.method == 'POST':
+
+        miAvatar = Avatar_form(request.POST, request.FILES)
+
+        if miAvatar.is_valid():
+
+            usuario = request.user
+
+            avatar = Avatar.objects.filter(user=usuario)
+
+            file = miAvatar.cleaned_data
+
+            if len(avatar) > 0:
+
+                avatar = avatar[0]
+                avatar.imagen = file['img']
+                avatar.save()
+
+                avatar = Avatar.objects.filter(user=request.user)
+
+                img = avatar[0].imagen.url
+
+            else:
+
+                avatar = Avatar(user=usuario, imagen=miAvatar.cleaned_data['img'])
+                avatar.save()
+
+                img = None
+
+        return render(request, 'appBlog/index.html', {'img':img})
+
+    else:
+
+        miAvatar = Avatar_form()
+
+        img = None
+        
+        return render(request, 'appUsers/addavatar.html', {'miAvatar': miAvatar, 'img': img})
+
+@login_required
+def open_profile(request):
+    
+    user = request.user
+
+    avatar = Avatar.objects.filter(user=request.user)
+
+    if len(avatar) > 0:
+
+        imgprofile = avatar[0].imagen.url
+
+    else:
+
+        imgprofile = None
+
+    aboutuser = UserAbout.objects.filter(user=request.user)
+
+    if len(aboutuser) > 0:
+        
+        bio = aboutuser[0].bio
+        instagram = aboutuser[0].instagram
+        facebook = aboutuser[0].facebook
+        twitter = aboutuser[0].twitter
+
+    else:
+    
+        bio = 'Información no disponible aún.'
+        instagram = None
+        facebook = None
+        twitter = None
+
+    if request.user.username:
+
+        avatar1 = Avatar.objects.filter(user=request.user)
+
+        if len(avatar1) > 0:
+
+            img = avatar1[0].imagen.url
+
+        else:
+
+            img = None
+    
+    else:
+
+        img = None
+
+    return render(request, 'appUsers/profile.html', {'user':user, 'imgprofile':img, 'img': img, 'bio':bio, 'instagram':instagram, 'facebook':facebook, 'twitter':twitter})
+
+def open_user_profile(request, usuario):
+
+    user = User.objects.get(username=usuario)
+
+    usuario1= user.id
+
+    avatar = Avatar.objects.filter(user=usuario1)
+
+    if len(avatar) > 0:
+
+        imgprofile = avatar[0].imagen.url
+
+    else:
+
+        imgprofile = None
+
+    aboutuser = UserAbout.objects.filter(user=usuario1)
+
+    if len(aboutuser) > 0:
+
+        bio = aboutuser[0].bio
+        instagram = aboutuser[0].instagram
+        facebook = aboutuser[0].facebook
+        twitter = aboutuser[0].twitter
+
+    else:
+    
+        bio = 'Información no disponible aún.'
+        instagram = None
+        facebook = None
+        twitter = None
+
+    if request.user.username:
+
+        avatar1 = Avatar.objects.filter(user=request.user)
+
+        if len(avatar1) > 0:
+
+            img = avatar1[0].imagen.url
+
+        else:
+
+            img = None
+    
+    else:
+
+        img = None
+
+    return render(request, 'appUsers/profile.html', {'img': img, 'user': user, 'imgprofile': imgprofile, 'bio':bio, 'instagram':instagram, 'facebook':facebook, 'twitter':twitter})
+
+@login_required
+def chatting(request, usuario):
+
+    receiver = User.objects.get(username=usuario)
+
+    avatar = Avatar.objects.filter(user=request.user)
+
+    messages = Chat.objects.all()
+
+    if len(avatar) > 0:
+
+        img = avatar[0].imagen.url
+
+    else:
+
+        img = None
+
+    if request.method == 'POST':
+
+        miMessage = Chat_form(request.POST)
+
+        if miMessage.is_valid():
+
+            message = Chat(writer=request.user, body=miMessage.cleaned_data['body'], recipient=receiver)
+
+            message.save()
+
+            miMessage = Chat_form()
+
+            return render(request, 'appUsers/chat.html', {'img': img, 'user':request.user, 'receiver': receiver, 'messages':messages, 'miMessage': miMessage})
+
+    else:
+
+        miMessage = Chat_form()
+
+    return render(request, 'appUsers/chat.html', {'img': img, 'user':request.user, 'receiver': receiver, 'messages':messages, 'miMessage': miMessage})
+
+@login_required
+def open_inbox(request):
+
+    activechats = Chat.objects.all()
+
+    listchats = []
+
+    for chat in activechats:
+
+        if chat.recipient != request.user or chat.recipient == request.user:
+
+
+            if chat.recipient == request.user and chat.writer not in listchats:
+
+                listchats.append(chat.writer)
+            
+            elif chat.recipient != request.user and chat.recipient.username not in listchats:
+
+                listchats.append(chat.recipient.username)
+
+
+    return render(request, 'appUsers/inbox.html', {'listchats':listchats, 'activechats':activechats})
 
         

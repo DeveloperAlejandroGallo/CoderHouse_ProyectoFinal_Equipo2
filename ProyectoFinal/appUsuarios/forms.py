@@ -38,3 +38,29 @@ class CustomUserCreationForm(UserCreationForm):
         class Meta :
             model = User
             fields = ['username' ,'first_name', 'last_name', 'email','password1', 'password2'] 
+
+class Avatar_form(forms.Form):
+
+    img = forms.ImageField()
+
+class AboutUser_form(forms.Form):
+
+    bio = forms.CharField(widget=forms.Textarea, label='Biografía', required=False)
+    instagram = forms.URLField(required=False, label='Instagram')
+    facebook = forms.URLField(required=False, label='Facebook')
+    twitter = forms.URLField(required=False, label='Twitter')
+
+class Chat_form(forms.Form):
+    
+    body = forms.CharField(widget=forms.Textarea, label="")
+
+class ChangePassword_form(forms.Form):
+
+    password1 = forms.CharField(label="Nueva contraseña", widget=forms.PasswordInput)
+    password2 = forms.CharField(label="Confirme su contraseña", widget=forms.PasswordInput)
+
+    class Meta:
+        
+        model = User
+        fields = ['password1', 'password2']
+        help_text = {k: "" for k in fields}
