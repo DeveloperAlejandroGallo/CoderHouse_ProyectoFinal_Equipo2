@@ -33,8 +33,39 @@ def contact(request):
 def post_details(request, post):
     return render(request,'appBlog/post_details.html') 
 
+
+
 def post_create(request):
-    return render(request, 'appBlog/post_create.html')
+
+    if( request.method == "POST"):
+
+        post = PostCrearForm(request.POST)
+
+        if(post.is_valid()):
+
+            content = post.cleaned_data
+
+            postCreateForm = Post(
+                titulo = content['titulo'],
+                subtitulo = content['subtitulo'],
+                fecha = content['fecha'],
+                imagen = content['imagen'],
+                texto = content['texto'],
+                likes = 0
+            )
+
+            post.save()
+
+            return redirect('Post Details', postCreateForm)
+
+        else:
+            postCreateForm = PostCrearForm()
+            return render(request, 'appUsuarios/signup.html', {"postCreateForm": postCreateForm, "mensaje": ['Datos ingresados Erróneos']})
+
+    else:
+        postCreateForm = PostCrearForm()
+        return render(request, 'appBlog/post_create.html', {"postCreateForm": postCreateForm}) 
+
 
 def post_list(request):
     return render(request,'appBlog/post_list.html')
