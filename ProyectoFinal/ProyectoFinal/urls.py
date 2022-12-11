@@ -25,7 +25,8 @@ urlpatterns = (
     re_path(r"^ckeditor/", include("ckeditor_uploader.urls")),
     re_path('', include('appBlog.urls')),
     re_path('', include('appUsuarios.urls')),
-]
+    path('accounts/', include('django.contrib.auth.urls')),
+ ]
 + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 )

@@ -1,0 +1,56 @@
+{% extends 'appBlog/base.html' %}
+
+{% load static %}
+
+{% block title%}Sobre Nosotros{% endblock title%}
+
+{% block cuerpo %} 
+<DOCTYPE html>
+<html lang='en'>
+<head>
+  {% load static %}
+   <meta charset=UTF-8>
+   <meta name-'viewsport' content='width=device-width', initial=scale=1.0>
+   <meta hhtp-equiv='X-UA-Compatible' content='ie=edge'>
+   <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+   <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+   <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+   
+   <title>ingreso al sistema</title>
+</head>
+<body>
+  {% load crispy_forms_tags %}
+    <div class='container'>
+      <br>
+      <br>
+      <div class='row'>
+          <div class='col-12 col-md-6 offset-md-3'>
+
+            <div class='card'>
+              <div class='card-boy'>
+                <h2>Ingresa tus datos</h2>
+                <hr>
+                <form action='' method='POST'>
+
+                {% csrf_token %}
+                {{form | crispy }}
+                <input type='submit' value='Iniciar sesion' class='btn btn-success'>
+                <a>No tienes una cuenta? registrate</a>
+                <input type='submit' value='registrar' class='btn btn-success float-right'>
+                </form>
+              </div>
+
+            </div>
+
+          </div>
+
+      </div>
+      
+    </div>
+    <br>
+    <br>
+
+  </body>
+{% endblock cuerpo %} 
+{% block footer %} 
+{% endblock footer%}
