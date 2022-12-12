@@ -17,7 +17,7 @@
                         <div class="cl-sm-2">
                             <div class="user-image-container mb-2">
                                 <div style="text-align: left;">
-                                    <a class="btn btn-link btn-sm" href="{% url 'addAvatar' %}">Actualizar imagen</a>
+                                    {% comment %} <a class="btn btn-link btn-sm" href="{% url 'addAvatar' %}">Actualizar imagen</a> {% endcomment %}
                                 </div>
                             </div>
                         {% endif %}
@@ -34,7 +34,7 @@
                                     <p></p>
                                     <div style="text-align: left;">
                                         {% if request.user.username == user.username %}
-                                        <a class="btn btn-xs" href="{% url 'EditarPerfil' %}">Editar</a>
+                                        {% comment %} <a class="btn btn-xs" href="{% url 'EditarPerfil' %}">Editar</a> {% endcomment %}
                                         {% endif %}
                                     </div>
                                 </div>

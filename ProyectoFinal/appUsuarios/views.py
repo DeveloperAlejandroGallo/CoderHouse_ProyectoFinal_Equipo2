@@ -32,9 +32,9 @@ def registro(request):
     return render (request, 'registration/signup.html', data)
     
 
-def user_login(request):
-    template_name = 'login.html'
-    return render(request,'registration/login.html')
+# def user_login(request):
+#     template_name = 'login.html'
+#     return render(request,'registration/login.html')
 
 #     if request.method=='POST':
         
@@ -130,16 +130,6 @@ def user_login(request):
 
 #         return render(request, 'appUsuarios/edit_user.html', {"userEditForm": userEditForm})
 
-@login_required
-def user_view(request):
-
-    user = request.user
-    userData = UserData.objects.filter(user=user)
-
-    if(len(userData) == 0):
-        return render('appUsuarios/profile.html', {'user':user,'mensaje':"Informacion no disponible aun."})
-    else:
-        return render('appUsuarios/profile.html', {'user':user,'userData':userData})
 
 
 @login_required
@@ -182,13 +172,12 @@ def add_avatar(request):
 
         img = None
         
-        return render(request, 'appUsers/addavatar.html', {'miAvatar': miAvatar, 'img': img})
+        return render(request, 'appUsuarios/addavatar.html', {'miAvatar': miAvatar, 'img': img})
+
 
 @login_required
-def open_profile(request):
-    
-    user = request.user
-
+def open_user_profile(request):
+ 
     avatar = Avatar.objects.filter(user=request.user)
 
     if len(avatar) > 0:
@@ -202,56 +191,6 @@ def open_profile(request):
     aboutuser = UserAbout.objects.filter(user=request.user)
 
     if len(aboutuser) > 0:
-        
-        bio = aboutuser[0].bio
-        instagram = aboutuser[0].instagram
-        facebook = aboutuser[0].facebook
-        twitter = aboutuser[0].twitter
-
-    else:
-    
-        bio = 'Información no disponible aún.'
-        instagram = None
-        facebook = None
-        twitter = None
-
-    if request.user.username:
-
-        avatar1 = Avatar.objects.filter(user=request.user)
-
-        if len(avatar1) > 0:
-
-            img = avatar1[0].imagen.url
-
-        else:
-
-            img = None
-    
-    else:
-
-        img = None
-
-    return render(request, 'appUsers/profile.html', {'user':user, 'imgprofile':img, 'img': img, 'bio':bio, 'instagram':instagram, 'facebook':facebook, 'twitter':twitter})
-
-def open_user_profile(request, usuario):
-
-    user = User.objects.get(username=usuario)
-
-    usuario1= user.id
-
-    avatar = Avatar.objects.filter(user=usuario1)
-
-    if len(avatar) > 0:
-
-        imgprofile = avatar[0].imagen.url
-
-    else:
-
-        imgprofile = None
-
-    aboutuser = UserAbout.objects.filter(user=usuario1)
-
-    if len(aboutuser) > 0:
 
         bio = aboutuser[0].bio
         instagram = aboutuser[0].instagram
@@ -281,7 +220,7 @@ def open_user_profile(request, usuario):
 
         img = None
 
-    return render(request, 'appUsers/profile.html', {'img': img, 'user': user, 'imgprofile': imgprofile, 'bio':bio, 'instagram':instagram, 'facebook':facebook, 'twitter':twitter})
+    return render(request, 'appUsuarios/profile.html', {'img': img, 'user': request.user, 'imgprofile': imgprofile, 'bio':bio, 'instagram':instagram, 'facebook':facebook, 'twitter':twitter})
 
 @login_required
 def chatting(request, usuario):
@@ -344,3 +283,15 @@ def open_inbox(request):
     return render(request, 'appUsers/inbox.html', {'listchats':listchats, 'activechats':activechats})
 
         
+# class SignUpView(CreateView):
+
+#     form_class = SignUpForm
+#     success_url = reverse_lazy('index.html')
+#     template_name = 'registrarse.html'
+
+
+# class AdminLoginView(LoginView):
+#     template_name = 'ingresar.html'
+
+# class AdminLogoutView(LogoutView):
+#     template_name = 'cerrar_sesion.html'

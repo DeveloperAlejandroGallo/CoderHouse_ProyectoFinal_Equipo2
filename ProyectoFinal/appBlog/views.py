@@ -93,16 +93,5 @@ def post_find(request):
 # def successView(request):
 #     return HttpResponse("Enviado! Gracias por tu mensaje!.")
 
-# class SignUpView(CreateView):
 
-#     form_class = SignUpForm
-#     success_url = reverse_lazy('index.html')
-#     template_name = 'registrarse.html'
-
-
-# class AdminLoginView(LoginView):
-#     template_name = 'ingresar.html'
-
-# class AdminLogoutView(LogoutView):
-#     template_name = 'cerrar_sesion.html'
 
