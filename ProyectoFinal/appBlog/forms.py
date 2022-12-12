@@ -6,24 +6,31 @@ from ckeditor_uploader.fields import RichTextUploadingFormField
 from ckeditor_uploader.widgets import CKEditorUploadingWidget
 from appBlog.models import Post
 from django.contrib.auth.models import User
+from django.contrib.admin.widgets import AdminDateWidget
+
+
 #from .models import Contact
 
 class PostCrearForm(forms.Form):
-    usuario = forms.CharField(disabled=True)
     titulo = forms.CharField(max_length=50)
     subtitulo = forms.CharField(max_length=100)
-    fecha = forms.DateField()
-    imagen = forms.ImageField()
+    fecha = forms.DateField(widget=AdminDateWidget)
+    imagen = forms.ImageField(required=False)
     cuerpo = forms.CharField(widget=forms.Textarea)
-    likes = forms.IntegerField()
     class Meta:
         model = Post
-        fields = ['usuario','titulo','subtitulo','fecha','imagen','cuerpo','likes']
+        fields = ['titulo','subtitulo','fecha','imagen','cuerpo']
+        widgets = {
+            'fecha': AdminDateWidget(
+                 attrs={'class': 'picker',  'autocomplete': 'off'}),
+            'cuerpo': forms.Textarea
+                 }
+
+
 
 class PostCommentForm(forms.Form):
-    usuario = forms.CharField(max_length=50)
     titulo = forms.CharField(max_length=50)
-    fecha = forms.DateTimeField()
+    fecha = forms.DateTimeField(widget=forms.SelectDateWidget(empty_label="Nothing"))
     cuerpo = forms.CharField(widget=forms.Textarea)
 
 #class ContactForm(forms.Form):
