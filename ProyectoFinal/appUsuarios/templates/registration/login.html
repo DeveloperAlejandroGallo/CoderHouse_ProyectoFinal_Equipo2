@@ -2,55 +2,36 @@
 
 {% load static %}
 
-{% block title%}Sobre Nosotros{% endblock title%}
+{% block title%}Login{% endblock title%}
+
+{% load crispy_forms_tags %}
 
 {% block cuerpo %} 
-<DOCTYPE html>
-<html lang='en'>
-<head>
-  {% load static %}
-   <meta charset=UTF-8>
-   <meta name-'viewsport' content='width=device-width', initial=scale=1.0>
-   <meta hhtp-equiv='X-UA-Compatible' content='ie=edge'>
-   <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-   <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-   <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-   
-   <title>ingreso al sistema</title>
-</head>
-<body>
-  {% load crispy_forms_tags %}
-    <div class='container'>
-      <br>
-      <br>
-      <div class='row'>
-          <div class='col-12 col-md-6 offset-md-3'>
 
-            <div class='card'>
-              <div class='card-boy'>
-                <h2>Ingresa tus datos</h2>
-                <hr>
-                <form action='' method='POST'>
-
-                {% csrf_token %}
-                {{form | crispy }}
-                <input type='submit' value='Iniciar sesion' class='btn btn-success'>
-                <a>No tienes una cuenta? registrate</a>
-                <a href="accounts/signup/" class="btn btn-success float-right">Registrar</a>
-                </form>
-              </div>
-
-            </div>
-
-          </div>
-
+<div class="About-bg">
+  <div class="container">
+     <div class="row">
+        <div class="col-md-12">
+           <div class="aboutheading">
+              <h3><span class="orange_color">Ingresar</span></h3>
+           </div>
+        </div>
+     </div>
+  </div>
+</div>
+<div class="container-fluid center">
+ <div class="card text-center" style="width: 18rem;">
+    <form action='' method='POST'>{% csrf_token %}
+      <div class="form-group">
+        {{form | crispy }}
       </div>
-      
-    </div>
-    <br>
-    <br>
+      <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
+      <p class="card-text">No tienes una cuenta? registrate</p>
+      <a href="{% url 'signup' %}" class="btn btn-success float-center">Registrar</a>
+    </form>
+  </div>
+</div>
 
-  </body>
 {% endblock cuerpo %} 
 {% block footer %} 
 {% endblock footer%}
