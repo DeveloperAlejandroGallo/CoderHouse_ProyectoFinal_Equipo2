@@ -49,8 +49,9 @@
                              {%if request.user.is_authenticated%}
                                  <li><a id="avatar-btn" class="nav-link" href="{% url 'OpenProfile' %}">Perfil</a></li> 
                                  <li><a id="avatar-btn" class="nav-link" href="{% url 'Post Create' %}">Crear Post</a></li> 
+                                 <li><a id="avatar-btn" class="nav-link" href="{% url 'logout' %}">Cerrar sesion</a></li> 
                               {%else%}
-                                 <li><a href="accounts/login/">Ingresar</a></li>
+                                 <li><a href="accounts/login">Ingresar</a></li>
                               {%endif%}  
                               <li><a href="{% url 'Post Find' %}"><img src="{% static 'appBlog/images/search_icon.png' %}" alt="#" /></a></li>
                            </ul>

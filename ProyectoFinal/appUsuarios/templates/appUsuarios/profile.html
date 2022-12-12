@@ -34,7 +34,7 @@
                                     <p></p>
                                     <div style="text-align: left;">
                                         {% if request.user.username == user.username %}
-                                        {% comment %} <a class="btn btn-xs" href="{% url 'EditarPerfil' %}">Editar</a> {% endcomment %}
+                                        <a class="btn btn-btn-outline-warning" href="/accounts/edit_user/">Editar</a>
                                         {% endif %}
                                     </div>
                                 </div>
@@ -48,15 +48,15 @@
                             <table style="width: 18%;">
 
                                 {%if instagram%}
-                                <th><a href="{{instagram}}"><img id="img" class="img rounded-circle" alt="Instagram icon" height="32" width="32" src="{% static 'appUsers/assets/instagram.ico' %}"></img></a></th>
+                                <th><a href="{{instagram}}"><img id="img" class="img rounded-circle" alt="Instagram icon" height="32" width="32" src="{% static 'appUsuarios/static/images/Instagram.png' %}"></img></a></th>
                                 {%endif%}
                                 {%if facebook%}
-                                <th><a href="{{facebook}}"><img id="img" class="img rounded-circle" alt="Facebook icon" height="32" width="32" src="{% static 'appUsers/assets/facebook.ico' %}"></img></a></th>
+                                <th><a href="{{facebook}}"><img id="img" class="img rounded-circle" alt="Facebook icon" height="32" width="32" src="{% static 'appUsuarios/static/images/facebook.png' %}"></img></a></th>
                                 {%endif%}
                                 {%if twitter%}
-                                <th><a href="{{twitter}}"><img id="img" class="img rounded-circle" alt="Twitter icon" height="32" width="32" src="{% static 'appUsers/assets/twitter.ico' %}"></img></a></th>
+                                <th><a href="{{twitter}}"><img id="img" class="img rounded-circle" alt="Twitter icon" height="32" width="32" src="{% static 'appUsuarios/static/images/twitter.png' %}"></img></a></th>
                                 {%endif%}
-                                <th><a href="{% url 'Chat' user.username %}"><img id="img" class="img rounded-circle" alt="Chat icon" height="32" width="32" src="{% static 'appUsers/assets/chat.ico' %}"></img></a></th>
+                                <th><a href="{% url 'Chat' user.username %}"><img id="img" class="img rounded-circle" alt="Chat icon" height="32" width="32" src="{% static 'appUsuarios/static/images/chat.png' %}"></img></a></th>
                             </table>
                         </div>
                     </div>

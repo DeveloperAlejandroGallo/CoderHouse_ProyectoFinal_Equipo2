@@ -1,0 +1,28 @@
+{% extends 'appBlog/base.html' %}
+
+{% load static %}
+
+{% block cuerpo %}
+<div class="container mt-5">
+
+    <h4 class="text-muted">Edicion de datos</h4>
+    <h5 class="text-muted">El cambio de contraseña es opcional</h5>
+    <hr></hr>
+
+        <form  method="post" class="form-group mb-5" style="text-align: justify">
+
+            {% csrf_token %}
+
+            <table class="table">
+
+            {{userEditForm.as_table}}
+
+            </table>
+
+            <p></p>
+            <input type="submit" value="Guardar cambios" class="btn btn-primary">
+            <a class="btn btn-primary" href="{% url 'Index' %}">Cancelar</a>
+
+        </form>
+</div>
+{% endblock cuerpo %}
