@@ -4,13 +4,28 @@ from django.contrib.auth.models import User
 from django.core.mail import send_mail, BadHeaderError
 from django.http import HttpResponse, HttpResponseRedirect
 
+# Redireccion
+from django.urls import reverse_lazy
+# Auth
+from django.contrib.auth.views import LoginView, LogoutView
+
+#Los decoradores sirven para funciones > vistas basadas en funciones
+from django.contrib.auth.decorators import login_required
+
+#ejemplo
+# @decorador
+# def funcion_a_proteger
+
+#Los mixins sirven para clases > vistas basadas en clases
+from django.contrib.auth.mixins import LoginRequiredMixin
+
 from appBlog.forms import *
 from appBlog.models import *
 from appUsuarios.models import *
 
 
-def inicio(request):
 
+def inicio(request):
     if request.user.username:
 
         userData = UserData.objects.filter(user=request.user)
@@ -28,10 +43,41 @@ def about(request):
 def contact(request):
     return render(request,'appBlog/contact.html') 
 
+@login_required
+def post_edit(request, pk):
 
-#Ver un post solo que tiene la opcion de hacer comentarios
-def post_details(request, post):
-    return render(request,'appBlog/post_details.html') 
+    post = Post.objects.get(id=pk)
+
+    if request.method == "POST":
+
+        postEditForm = PostCrearForm(request.POST)
+        
+        if postEditForm.is_valid():
+
+            data = postEditForm.cleaned_data
+
+            post.titulo = data['titulo']
+            post.subtitulo = data["subtitulo"]
+            post.cuerpo = data["cuerpo"]
+            post.imagen = data["imagen"]
+
+            post.save()
+
+            postslist = Post.objects.all().order_by('-fecha')
+
+            return render(request, "appBlog/post_list.html", {'postlist': postslist})
+
+        else:
+
+            # postEditForm = PostCrearForm()
+
+            return render(request, "appBlog/post_edit.html", {"formulario": postEditForm, "errors": ['Datos ingresados inválidos.']})
+
+    else:
+
+        postEditForm = PostCrearForm(initial={"titulo": post.titulo, "subtitulo": post.subtitulo, 'cuerpo': post.cuerpo, 'imagen': post.imagen.url})
+
+        return render(request, "appBlog/post_edit.html", {"formulario": postEditForm})
 
 
 
@@ -39,28 +85,31 @@ def post_create(request):
 
     if( request.method == "POST"):
 
-        post = PostCrearForm(request.POST)
+        postCreateForm = PostCrearForm(request.POST, request.FILES)
+        postCreateForm.usuario = request.user.username
+        if(postCreateForm.is_valid()):
 
-        if(post.is_valid()):
+            content = postCreateForm.cleaned_data
 
-            content = post.cleaned_data
-
-            postCreateForm = Post(
+            post = Post(
+                usuario = request.user,
                 titulo = content['titulo'],
                 subtitulo = content['subtitulo'],
                 fecha = content['fecha'],
                 imagen = content['imagen'],
-                texto = content['texto'],
+                cuerpo = content['cuerpo'],
                 likes = 0
             )
 
             post.save()
 
-            return redirect('Post Details', postCreateForm)
+            postslist = Post.objects.all().order_by('-fecha')
+
+            return render(request, 'appBlog/post_list.html', {"postslist": postslist})
 
         else:
-            postCreateForm = PostCrearForm()
-            return render(request, 'appUsuarios/signup.html', {"postCreateForm": postCreateForm, "mensaje": ['Datos ingresados Erróneos']})
+            
+            return render(request, 'appBlog/post_create.html', {"postCreateForm": postCreateForm, "mensaje": ['Datos ingresados Erróneos']})
 
     else:
         postCreateForm = PostCrearForm()
@@ -68,10 +117,31 @@ def post_create(request):
 
 
 def post_list(request):
-    return render(request,'appBlog/post_list.html')
+    postslist= Post.objects.all().order_by('-fecha')
+    
+    if postslist.count() > 0:
+        return render(request, 'appBlog/post_list.html', {"postslist": postslist})
+    
+    respuesta='Aún no hay Posteos para mostrar'
+    return render(request, 'appBlog/post_list.html',{'mensaje': respuesta})
+
+
+
 
 def post_find(request):
-    return render(request,'appBlog/post_find.html')
+    
+    if request.GET.get('busqueda',False):
+        busqueda = request.GET['busqueda'] 
+        postslist= Post.objects.all().filter(titulo__icontains=busqueda).order_by('-fecha')
+      
+        if postslist.count() > 0:
+            return render(request, 'appBlog/post_find.html', {"postslist": postslist})
+  
+  
+    respuesta='Sin resultados'
+    return render(request, 'appBlog/post_find.html',{'mensaje': respuesta})
+
+
 
 
 # def contactView(request):

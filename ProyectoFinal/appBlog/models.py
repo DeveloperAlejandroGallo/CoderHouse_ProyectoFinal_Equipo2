@@ -11,8 +11,8 @@ class Post(models.Model):
     usuario = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     titulo = models.CharField(max_length=50)
     subtitulo = models.CharField(max_length=100)
-    fecha = models.DateField()
-    imagen = models.ImageField()
+    fecha = models.DateField(default=timezone.now)
+    imagen = models.ImageField(upload_to='images/')
     cuerpo = models.TextField(default="")
     likes = models.IntegerField()
 

@@ -4,7 +4,7 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from appUsuarios.forms import CustomUserCreationForm ,Avatar_form,Chat_form
+from appUsuarios.forms import *
 from appUsuarios.models import *
 from django.contrib import messages 
 from appUsuarios.models import Avatar, UserAbout , Chat 
@@ -77,58 +77,58 @@ def registro(request):
 #         signupForm = UserRegisterForm()
 #         return render(request, 'appUsuarios/signup.html', {"signupForm": signupForm}) 
 
-# @login_required
-# def user_edit(request):
+@login_required
+def user_edit(request):
 
-#     user = request.user
+    user = request.user
 
-#     if request.method == 'POST':
+    if request.method == 'POST':
          
-#         userEditForm = UserEditForm(request.POST)
+        userEditForm = UserEditForm(request.POST)
 
-#         if (userEditForm.is_valid()):
+        if (userEditForm.is_valid()):
 
-#             data = userEditForm.cleaned_data
+            data = userEditForm.cleaned_data
 
-#             user.email = data["email"]
-#             user.first_name = data["first_name"]
-#             user.last_name = data["last_name"]
-#             user.password1 = data["password1"]
-#             user.password2 = data["password2"]
+            user.email = data["email"]
+            user.first_name = data["first_name"]
+            user.last_name = data["last_name"]
+            user.password1 = data["password1"]
+            user.password2 = data["password2"]
 
-#             user.save()
+            user.save()
 
-#             userData = UserData.objects.filter(user=user)
+            userData = UserData.objects.filter(user=user)
 
-#             if len(userData) > 0:
+            if len(userData) > 0:
 
-#                 userData = userData[0]
+                userData = userData[0]
 
-#                 userData.avatar = data['avatar']
-#                 userData.aboutMe = data['aboutMe']
-#                 userData.github = data['github']
-#             else:
-#                 userData = UserData(
-#                     user= user, 
-#                     avatar=data['avatar'], 
-#                     aboutMe=data['aboutMe'], 
-#                     github=data['github'])
+                userData.avatar = data['avatar']
+                userData.aboutMe = data['aboutMe']
+                userData.github = data['github']
+            else:
+                userData = UserData(
+                    user= user, 
+                    avatar=data['avatar'], 
+                    aboutMe=data['aboutMe'], 
+                    github=data['github'])
             
-#             userData.save()
+            userData.save()
 
-#             return redirect('Index')
+            return redirect('Index')
 
-#         else:
+        else:
 
-#             userEditForm = UserEditForm()
+            userEditForm = UserEditForm()
 
-#             return render(request, 'appUsuarios/edit_user.html', {"userEditForm": userEditForm, "mensaje": ['Datos ingresados inválidos.'], 'img':img})
+            return render(request, 'appUsuarios/edit_user.html', {"userEditForm": userEditForm, "mensaje": ['Datos ingresados inválidos.'], 'img':img})
 
-#     else: 
+    else: 
 
-#         userEditForm = UserEditForm(initial={'email': user.email, 'first_name': user.first_name, 'last_name': user.last_name})
+        userEditForm = UserEditForm(initial={'email': user.email, 'first_name': user.first_name, 'last_name': user.last_name})
 
-#         return render(request, 'appUsuarios/edit_user.html', {"userEditForm": userEditForm})
+        return render(request, 'appUsuarios/edit_user.html', {"userEditForm": userEditForm})
 
 
 

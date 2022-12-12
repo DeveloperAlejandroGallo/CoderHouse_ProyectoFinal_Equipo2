@@ -11,11 +11,11 @@ urlpatterns = [
     path('about', about, name = 'About'),
     path('contact', contact, name='Contact'),
     path('post_create', post_create, name='Post Create'),
-    path('post_details/<post>', post_details, name='Post Details'),
+    path('post_edit/<pk>', post_edit, name='Post Edit'),
     path('post_list', post_list, name='Post List'),
-    path('post_find', post_list, name='Post Find'),
+    path('post_find', post_find, name='Post Find'),
     #path('contact', contactView, name='contact'),
-    # path('success', successView, name='success'),
+    #path('success', successView, name='success'),
 ] 
 
     
