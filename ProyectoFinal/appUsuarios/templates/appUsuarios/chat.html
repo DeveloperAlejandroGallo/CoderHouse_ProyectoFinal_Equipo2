@@ -12,6 +12,13 @@
                     <div class="card-body">
                         <div class="d-flex mb-4">
                             <div class="ms-3">
+                                <label for="users">Seleccione un usuario:</label>
+
+ <select name="users" id="users">
+   {% for usuario in lista_usuarios%}
+      <option value="users">{{usuario.username}}</option>
+   {%endfor%}
+ </select>
 
                                 {% for message in messages %}
                                     {% if message.writer == user.username %}

@@ -239,6 +239,8 @@ def chatting(request, usuario):
 
     messages = Chat.objects.all()
 
+    lista_usuarios = User.objects.all()
+
     if len(avatar) > 0:
 
         img = avatar[0].imagen.url
@@ -259,13 +261,25 @@ def chatting(request, usuario):
 
             miMessage = Chat_form()
 
-            return render(request, 'appUsers/chat.html', {'img': img, 'user':request.user, 'receiver': receiver, 'messages':messages, 'miMessage': miMessage})
+            return render(request, 'appUsuarios/chat.html', 
+                    {'img': img,
+                    'user':request.user,
+                    'receiver': receiver,
+                    'messages':messages,
+                    'miMessage': miMessage,
+                    'lista_usuarios':lista_usuarios})
 
     else:
 
         miMessage = Chat_form()
 
-    return render(request, 'appUsers/chat.html', {'img': img, 'user':request.user, 'receiver': receiver, 'messages':messages, 'miMessage': miMessage})
+    return render(request, 'appUsuarios/chat.html',
+            {'img': img,
+            'user':request.user,
+            'receiver': receiver,
+            'messages':messages, 
+            'miMessage': miMessage,
+            'lista_usuarios':lista_usuarios})
 
 @login_required
 def open_inbox(request):
@@ -288,7 +302,12 @@ def open_inbox(request):
                 listchats.append(chat.recipient.username)
 
 
-    return render(request, 'appUsers/inbox.html', {'listchats':listchats, 'activechats':activechats})
+    return render(request, 'appUsuarios/inbox.html', {'listchats':listchats, 'activechats':activechats})
+
+
+def lista_usuarios(request):
+
+    lista_usuarios = User.objects.all()
 
         
 # class SignUpView(CreateView):

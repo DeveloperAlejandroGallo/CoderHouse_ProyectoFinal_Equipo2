@@ -45,6 +45,7 @@
                               <li><a href="{% url 'About' %}">Nosotros</a></li>
                               <li><a href="{% url 'Post List' %}">Ver Posteos</a></li>
                               <li><a href="{% url 'Contact' %}">Contacto</a></li>
+                              <li class="nav-item"><a class="nav-link" href="{% url 'Inbox' %}">Chat</a></li>
                               
                              {%if request.user.is_authenticated%}
                              <li><a id="avatar-btn" class="nav-link" href="{% url 'Post Create' %}">Crear Post</a></li> 
