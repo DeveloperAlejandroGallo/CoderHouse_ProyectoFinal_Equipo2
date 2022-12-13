@@ -2,68 +2,51 @@
 
 {% load static %}
 
-{% block title %} Perfil de {{user.username}} {% endblock title %}
+{% block title%}Perfil{% endblock title%}
 
-{% block cuerpo %}
+{% load crispy_forms_tags %}
 
-<div class="container-fluid mb-5">
-    <p></p>
-    <div class="container-fluid mb-5">
-        <div class="row">
-            <div class="container-fluid mb-5">
-                <div class="row">
-                    <div class="row">    
-                        {% if request.user.is_superuser %}
-                        <div class="cl-sm-2">
-                            <div class="user-image-container mb-2">
-                                <div style="text-align: left;">
-                                    {% comment %} <a class="btn btn-link btn-sm" href="{% url 'addAvatar' %}">Actualizar imagen</a> {% endcomment %}
-                                </div>
-                            </div>
-                        {% endif %}
-                        </div>
-                        <div class="col-sm-8 d-flex align-items-center"> 
-                            <div class="about-me">                    
-                                <div class="d-flex justify-content-start align-items-center"> 
+{% block cuerpo %} 
 
-                                    {%if user.first_name and user.last_name%}
-                                    <h2><strong>{{user.first_name}} {{user.last_name}}</strong></h2>
-                                    {%else%}
-                                    <h2><strong>Nombre/s Apellido/s</strong></h2>
-                                    {%endif%}
-                                    <p></p>
-                                    <div style="text-align: left;">
-                                        {% if request.user.username == user.username %}
-                                        <a class="btn btn-btn-outline-warning" href="/accounts/edit_user/">Editar</a>
-                                        {% endif %}
-                                    </div>
-                                </div>
-                                <div class="text-muted mb-3">{{user.username}} | {{user.email}}</div>
-                            </div>
-                        </div>
+<br>
 
-                        <div id="description" class="container-fluid mb-5">
-                            <p>{{bio}}<p>
-                            <hr></hr>
-                            <table style="width: 18%;">
+<div class='conteiner center'> 
+    <div class="card text-center" style="width: 30rem;">
+        <img src="{{img}}" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h1 class="orange_color">{{request.user.username}}</h1>
+          <p class="card-text">{{about_me}}</p>
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon1">Usuario</span>
+                    <input type="text" class="form-control" placeholder="{{request.user.username}}" aria-label="Username" aria-describedby="basic-addon1" >
+                  </div>
+            </li>
+            <li class="list-group-item">
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon1">Email</span>
+                    <input type="text" class="form-control" placeholder="{{request.user.email}}" aria-label="Username" aria-describedby="basic-addon1">
+                  </div>
+            </li>
+            <li class="list-group-item">
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon1">Nombre</span>
+                    <input type="text" class="form-control" placeholder="{{request.user.first_name}},{{request.user.last_name}}" aria-label="Username" aria-describedby="basic-addon1">
+                  </div>
+            </li>
+          </ul>
+          <div class="card-body">
+            {% if request.user.username == user.username %}
+            <a href="/accounts/edit_user/" class="btn btn-outline-warning float-center">Editar</a>
+            {% endif %}
+            <table style="width: 18%;">
+                <th><a href="{% url 'Chat' user.username %}"><img id="img" class="img rounded-circle" alt="Chat icon" height="32" width="32" src="{% static 'appUsuarios/images/chat.png' %}"></img></a></th>
+            </table>
+        </div>
+      </div>
 
-                                {%if instagram%}
-                                <th><a href="{{instagram}}"><img id="img" class="img rounded-circle" alt="Instagram icon" height="32" width="32" src="{% static 'appUsuarios/static/images/Instagram.png' %}"></img></a></th>
-                                {%endif%}
-                                {%if facebook%}
-                                <th><a href="{{facebook}}"><img id="img" class="img rounded-circle" alt="Facebook icon" height="32" width="32" src="{% static 'appUsuarios/static/images/facebook.png' %}"></img></a></th>
-                                {%endif%}
-                                {%if twitter%}
-                                <th><a href="{{twitter}}"><img id="img" class="img rounded-circle" alt="Twitter icon" height="32" width="32" src="{% static 'appUsuarios/static/images/twitter.png' %}"></img></a></th>
-                                {%endif%}
-                                <th><a href="{% url 'Chat' user.username %}"><img id="img" class="img rounded-circle" alt="Chat icon" height="32" width="32" src="{% static 'appUsuarios/static/images/chat.png' %}"></img></a></th>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div> 
-    </div>
 </div>
 
 

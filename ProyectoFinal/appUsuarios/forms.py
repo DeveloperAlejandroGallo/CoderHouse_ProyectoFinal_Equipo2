@@ -19,13 +19,13 @@ from django.contrib.auth.forms import UserCreationForm
 
 class UserEditFormAdmin(UserCreationForm):
 
-    email = forms.EmailField(disabled=True)
+    email = forms.EmailField(disabled=True, required=False)
     first_name = forms.CharField(label="Nombre")
     last_name = forms.CharField(label='Apellido')
     password1 = forms.CharField(label="Nueva Contraseña", widget=forms.PasswordInput)
     password2 = forms.CharField(label="Confirme contraseña", widget=forms.PasswordInput)
-    # about = forms.Textarea()
-    avatar = forms.ImageField()
+    # about_me = forms.Textarea(required=False)
+    avatar = forms.ImageField(required=False)
 
 
 class UserEditForm(UserCreationForm):
@@ -62,3 +62,18 @@ class ChangePassword_form(forms.Form):
         model = User
         fields = ['password1', 'password2']
         help_text = {k: "" for k in fields}
+
+
+class Avatar_form(forms.Form):
+
+    img = forms.ImageField()
+
+class AboutUser_form(forms.Form):
+
+    bio = forms.CharField(widget=forms.Textarea, label='Biografía', required=False)
+    instagram = forms.URLField(required=False, label='Instagram')
+    facebook = forms.URLField(required=False, label='Facebook')
+    twitter = forms.URLField(required=False, label='Twitter')
+
+
+
