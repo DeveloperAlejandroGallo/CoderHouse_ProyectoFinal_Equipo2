@@ -3,6 +3,9 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.core.mail import send_mail, BadHeaderError
 from django.http import HttpResponse, HttpResponseRedirect
+from django.views.generic import ListView
+from django.views.generic.detail import DetailView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 # Redireccion
 from django.urls import reverse_lazy
@@ -44,41 +47,48 @@ def contact(request):
     return render(request,'appBlog/contact.html') 
 
 @login_required
-def post_edit(request, pk):
+def post_edit(request, id):
+    post = Post.objects.get(id=id)
 
-    post = Post.objects.get(id=pk)
+    lista_usuarios = User.objects.all()
 
-    if request.method == "POST":
+    if request.method == 'POST':
 
         postEditForm = PostCrearForm(request.POST)
-        
-        if postEditForm.is_valid():
+
+        if (postEditForm.is_valid()):
 
             data = postEditForm.cleaned_data
 
             post.titulo = data['titulo']
             post.subtitulo = data["subtitulo"]
             post.cuerpo = data["cuerpo"]
+            post.fecha = data['fecha']
             post.imagen = data["imagen"]
 
             post.save()
-
+            
             postslist = Post.objects.all().order_by('-fecha')
 
-            return render(request, "appBlog/post_list.html", {'postlist': postslist})
+            return render(request, 'appBlog/post_list.html', {"postslist": postslist})
 
         else:
 
-            # postEditForm = PostCrearForm()
+            postEditForm = PostCrearForm()
+            return render(request, 'appBlog/post_edit.html', 
+            {"postEditForm": postEditForm, "mensaje": ['Datos ingresados inválidos.']})
 
-            return render(request, "appBlog/post_edit.html", {"formulario": postEditForm, "errors": ['Datos ingresados inválidos.']})
+    else: 
 
-    else:
-
-        postEditForm = PostCrearForm(initial={"titulo": post.titulo, "subtitulo": post.subtitulo, 'cuerpo': post.cuerpo, 'imagen': post.imagen.url})
-
-        return render(request, "appBlog/post_edit.html", {"formulario": postEditForm})
-
+        postEditForm = PostCrearForm(initial={
+                'titulo':   post.titulo,
+                'subtitulo':post.subtitulo,
+                'cuerpo':   post.cuerpo ,
+                'fecha':    post.fecha ,
+                'imagen':   post.imagen 
+            })
+        
+        return render(request, 'appBlog/post_edit.html', {"postEditForm": postEditForm, "id":id})    
 
 
 def post_create(request):
@@ -141,7 +151,69 @@ def post_find(request):
     respuesta='Sin resultados'
     return render(request, 'appBlog/post_find.html',{'mensaje': respuesta})
 
+def post_delete(request, pk):
 
+    post = Post.objects.filter(id=pk)
+
+    if post:
+        post.delete()
+        
+
+    return render(request, 'appBlog/post_list.html',{'mensaje': 'Post Eliminado'})
+
+
+
+#hecho con vistas
+class PostList(LoginRequiredMixin, ListView):
+
+    model = Post
+    template_name = 'appBlog/posts_list.html'
+
+
+class PostDetailView(DetailView):
+
+    model = Post
+    template_name = 'appBlog/post_detalle.html'
+
+class PostDeleteView(DeleteView):
+
+    # Recordatorio, en success_url utilzar el nombre de la url
+    # Ejemplo:
+    # path('Posts_list/', views.PostList.as_view(), name='List'),
+    # en este caso, utilizar el string del primer parametro
+    # antecedido de una slash
+    model = Post
+    success_url = '/Posts_list'
+
+
+class PostUpdateView(UpdateView):
+
+    # Recordatorio, en success_url utilzar el nombre de la url
+    # Ejemplo:
+    # path('Posts_list/', views.PostList.as_view(), name='List'),
+    # en este caso, utilizar el string del primer parametro
+    # antecedido de una slash
+    model = Post
+    success_url = '/Posts_list'
+    fields = ['nombre', 'comision']
+
+
+class PostCreateView(LoginRequiredMixin, CreateView):
+
+    # Recordatorio, en success_url utilzar el nombre de la url
+    # Ejemplo:
+    # path('Posts_list/', views.PostList.as_view(), name='List'),
+    # en este caso, utilizar el string del primer parametro
+    # antecedido de una slash
+    model = Post
+    success_url = '/Posts_list'
+    fields = ['nombre', 'comision']
+
+class EditPostView(UpdateView):
+    model = Post
+    from_class = PostAddForm
+    template_name = 'appBlog/post_edit.html'
+    success_url = '/post_list/'
 
 
 # def contactView(request):

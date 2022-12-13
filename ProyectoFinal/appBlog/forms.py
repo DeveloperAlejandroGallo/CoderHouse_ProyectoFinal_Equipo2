@@ -17,14 +17,6 @@ class PostCrearForm(forms.Form):
     fecha = forms.DateField(widget=AdminDateWidget)
     imagen = forms.ImageField(required=False)
     cuerpo = forms.CharField(widget=forms.Textarea)
-    class Meta:
-        model = Post
-        fields = ['titulo','subtitulo','fecha','imagen','cuerpo']
-        widgets = {
-            'fecha': AdminDateWidget(
-                 attrs={'class': 'picker',  'autocomplete': 'off'}),
-            'cuerpo': forms.Textarea
-                 }
 
 
 
@@ -32,6 +24,21 @@ class PostCommentForm(forms.Form):
     titulo = forms.CharField(max_length=50)
     fecha = forms.DateTimeField(widget=forms.SelectDateWidget(empty_label="Nothing"))
     cuerpo = forms.CharField(widget=forms.Textarea)
+
+
+class PostAddForm(forms.ModelForm):
+    class Meta:
+        model = Post
+        fields = ['titulo','subtitulo','fecha','imagen','cuerpo']
+
+        widgets = {
+            'titulo': forms.TextInput(attrs={'class':'form-control'}),
+            'subtitulo': forms.TextInput(attrs={'class':'form-control'}),
+            'fecha': forms.DateField(widget=AdminDateWidget),
+            'imagen': forms.TextInput(attrs={'class':'form-control'}),
+            'cuerpo': forms.Textarea(attrs={'class':'form-control'}),
+        }
+
 
 #class ContactForm(forms.Form):
 #    email = forms.EmailField()
