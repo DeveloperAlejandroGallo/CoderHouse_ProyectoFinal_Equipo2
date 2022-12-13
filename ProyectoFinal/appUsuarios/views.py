@@ -108,7 +108,7 @@ def user_edit(request):
                 userData = userData[0]
 
                 userData.avatar = data['avatar']
-                userData.aboutMe = data['aboutMe']
+                userData.about_me = data['aboutMe']
                 userData.github = data['github']
             else:
                 userData = UserData(
@@ -127,7 +127,7 @@ def user_edit(request):
             if request.user.is_superuser:
                 userEditForm = UserEditFormAdmin(request.POST)   
 
-            return render(request, 'appUsuarios/edit_user.html', {"userEditForm": userEditForm, "mensaje": ['Datos ingresados inválidos.'], 'img':Avatar})
+            return render(request, 'appUsuarios/edit_user.html', {"userEditForm": userEditForm, "mensaje": ['Datos ingresados inválidos.'], 'img':avatar})
 
     else: 
 
