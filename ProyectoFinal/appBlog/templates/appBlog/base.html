@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      
+    {% load static %}
+      <!-- basic -->
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <!-- mobile metas -->
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+      <!-- site metas -->
+      <title>{%block title%}Blog Del Programador{%endblock title%}</title>
+      <meta name="keywords" content="">
+      <meta name="description" content="">
+      <meta name="author" content="">
+   </head>
+   <!-- body -->
+   <body class="main-layout">
+      <!-- loader  -->
+      <div class="loader_bg">
+         <div class="loader"><img src="{% static 'appBlog/images/programming-languages.gif' %}" alt="" /></div>
+      </div>
+      <!-- end loader -->
+      <!-- header -->
+      <header>
+         <div class="container-fluid">
+            <div class="row">
+               <div class="col-lg-3 logo_section">
+                  <div class="full">
+                     <div class="center-desk">
+                        <div class="logo"> <a href="{% url 'Index' %}"><img src="{% static 'appBlog/images/Python.png' %}" alt="#"></a> </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-lg-9">
+                  <div class="menu-area">
+                     <div class="limit-box">
+                        <nav class="main-menu">
+                           <ul class="menu-area-main">
+                              {%if request.user.is_superuser%}
+                              <li><a class="nav-link" href="/admin/">Admin</a></li>
+                              {%endif%}
+                              <li><a href="{% url 'Index' %}">Home</a></li>
+                              <li><a href="{% url 'About' %}">Nosotros</a></li>
+                              <li><a href="{% url 'Post List' %}">Ver Posteos</a></li>
+                              <li><a href="{% url 'Contact' %}">Contacto</a></li>
+                              <li class="nav-item"><a class="nav-link" href="{% url 'Inbox' %}">Chat</a></li>
+                              
+                             {%if request.user.is_authenticated%}
+                             <li><a id="avatar-btn" class="nav-link" href="{% url 'Post Create' %}">Crear Post</a></li> 
+                              <li class="nav-item dropdown">
+                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    {{request.user.username}}
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                                       <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                                       <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                                     </svg>
+                                 </a>
+                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{% url 'OpenProfile' %}">Perfil</a>
+                                    <a class="dropdown-item" href="{% url 'logout' %}">Cerrar Sesión</a>
+                                 </div>
+                              </li>
+                              {%else%}
+                                 <li><a href="{% url 'login' %}">Ingresar</a></li>
+                              {%endif%}  
+                              <li><a href="{% url 'Post Find' %}"><img src="{% static 'appBlog/images/search_icon.png' %}" alt="#" /></a></li>
+                           </ul>
+                        </nav>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <!-- end header inner -->
+      </header>
+      <!-- end header -->
+      {% block cuerpo %}{% endblock cuerpo %}
+      <footer>
+         <div class="container">
+            <div class="row">
+               <div class="col-lg-4 col-md-6">
+                  <a href="#"><img src="{% static 'appBlog/images/fevicon.png' %}" alt="#" /></a>
+                  <ul class="contact_information">
+                     <li><span><img src="{% static 'appBlog/images/location_icon.png' %}" alt="#" /></span><span class="text_cont">Av. Rivadavia 5555<br>Buenos Aires - Argentina</span></li>
+                     <li><span><img src="{% static 'appBlog/images/phone_icon.png' %}" alt="#" /></span><span class="text_cont">Directo<br>9+54 911 6234 5678</span></li>
+                     <li><span><img src="{% static 'appBlog/images/mail_icon.png' %}" alt="#" /></span><span class="text_cont">Email<br>grupo2python@gmail.com</span></li>
+                  </ul>
+                  <ul class="social_icon">
+                     <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                     <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                     <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                     <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                  </ul>
+               </div>
+               <div class="col-lg-2 col-md-6">
+                  <div class="footer_links">
+                     <h3>Accesos Rapidos</h3>
+                     <ul>
+                        <li><a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i> Home</a></li>
+                        <li><a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i> Mar</a></li>
+                        <li><a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i> Blog</a></li>
+                        <li><a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i> Contactenos</a></li>
+                     </ul>
+                  </div>
+               </div>
+               <div class="col-lg-3 col-md-6">
+                  <div class="footer_links">
+                     <h3>Instagram</h3>
+                     <ol>
+                        <li><img class="img-responsive" src="{% static 'appBlog/images/html.png' %}" alt="#" /></li>
+                        <li><img class="img-responsive" src="{% static 'appBlog/images/java.png' %}" alt="#" /></li>
+                        <li><img class="img-responsive" src="{% static 'appBlog/images/c++.png' %}" alt="#" /></li>
+                        <li><img class="img-responsive" src="{% static 'appBlog/images/css.png' %}" alt="#" /></li>
+                     </ol>
+                  </div>
+               </div>
+               <div class="col-lg-3 col-md-6">
+                  <div class="footer_links">
+                     <h3>Contactenos</h3>
+                     <form action="index.html">
+                        <fieldset>
+                           <div class="field">
+                              <input type="text" name="name" placeholder="Your Name" required="" />
+                           </div>
+                           <div class="field">
+                              <input type="email" name="email" placeholder="Email" required="" />
+                           </div>
+                           <div class="field">
+                              <input type="text" name="subject" placeholder="Subject" required="" />
+                           </div>
+                           <div class="field">
+                              <textarea placeholder="Message"></textarea>
+                           </div>
+                           <div class="field">
+                              <div class="center">
+                                 <button class="reply_bt">Send</button>
+                              </div>
+                           </div>
+                        </fieldset>
+                     </form>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </footer>
+      <div class="cpy">
+         <div class="container">
+            <div class="row">
+               <div class="col-md-12">
+                  <p>Copyright © 2019 Design by <a href="https://html.design/">Free Html Templates</a></p>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- end footer -->
+
+
+      <!-- bootstrap css -->
+      <link rel="stylesheet" href="{% static 'appBlog/css/bootstrap.min.css' %}">
+      <!-- style css -->
+      <link rel="stylesheet" href="{% static 'appBlog/css/style.css' %}">
+      <!-- Responsive-->
+      <link rel="stylesheet" href="{% static 'appBlog/css/responsive.css' %}">
+      <!-- fevicon -->
+      <link rel="icon" href="{% static 'appBlog/images/fevicon.png' %}" type="image/gif" />
+      <!-- Scrollbar Custom CSS -->
+      <link rel="stylesheet" href="{% static 'appBlog/css/jquery.mCustomScrollbar.min.css' %}">
+      <!-- Tweaks for older IEs-->
+      <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js' %}"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js' %}"></script><![endif]-->
+      <!-- Javascript files-->
+      <script src="{% static 'appBlog/js/jquery.min.js' %}"></script>
+      <script src="{% static 'appBlog/js/popper.min.js' %}"></script>
+      <script src="{% static 'appBlog/js/bootstrap.bundle.min.js' %}"></script>
+      <script src="{% static 'appBlog/js/jquery-3.0.0.min.js' %}"></script>
+      <script src="{% static 'appBlog/js/plugin.js' %}"></script>
+      <!-- Scrollbar Js Files -->
+      <script src="{% static 'appBlog/js/jquery.mCustomScrollbar.concat.min.js' %}"></script>
+      <script src="{% static 'appBlog/js/custom.js' %}"></script>
+   </body>
+</html>

@@ -1,0 +1,39 @@
+{% extends 'appBlog/base.html' %}
+
+{% block title %} Editar Posteo {% endblock title %}
+
+{% load static %}
+
+{% block cuerpo %}
+<!-- section --> 
+<div class="About-bg">
+   <div class="container">
+      <div class="row">
+         <div class="col-md-12">
+            <div class="aboutheading">
+               <h3>Editar <span class="orange_color">Posteo</span></h3>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+
+<form  method="post" class="form-group mb-5 center" style="text-align: justify">
+
+   {% csrf_token %}
+   <div class="form-fa-group">
+      <table class="table">
+
+         {{postEditForm.as_table}}
+
+      </table>
+   </div>
+   <div class="form-fa-group">
+      <input type="submit" value="Guardar cambios" class="btn btn-outline-warning">
+      <a class="btn btn-outline-danger" href="{% url 'Post Delete' id%}">Eliminar</a>
+   </div>
+
+</form>
+
+ {% endblock cuerpo %}
+

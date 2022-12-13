@@ -1,0 +1,83 @@
+{% extends 'appBlog/base.html' %}
+
+{% load static %}
+
+{% block cuerpo %}
+
+    <div class="container-fluid mb-5">
+        <h3 class="fst-italic">{{receiver.username}}</h3>
+        <div class="row" style="width: 95%;">        
+            <div class="col">        
+                <div class="card bg-light mb-3">
+                    <div class="card-body">
+                        <div class="d-flex mb-4">
+                            <div class="ms-3">
+                                <label for="users">Seleccione un usuario:</label>
+
+ <select name="users" id="users">
+   {% for usuario in lista_usuarios%}
+      <option value="users">{{usuario.username}}</option>
+   {%endfor%}
+ </select>
+
+                                {% for message in messages %}
+                                    {% if message.writer == user.username %}
+                                    
+                                        <div class="fw-bold">{{request.user.username}}</div>
+                                        {{message.body}}
+                                        <div class="small text-muted mb-2">{{message.fecha_hora}}</div>
+
+                                    {% elif message.recipient.username == user.username and message.writer == receiver.username %}
+                                        <div class="fw-bold">{{message.writer}}</div>
+                                        {{message.body}}
+                                        <div class="small text-muted mb-2">{{message.fecha_hora}}</div>
+                                    {% endif %}
+                                {% endfor %}
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4" style="width: 100%;">
+                    <!-- Enter message-->
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <div class="input-group">
+                                <form action="" method="POST" style="width:75%;"> {% csrf_token %}
+                                    {{miMessage.as_p}}
+                                    <input type="submit", value="Enviar", class="btn btn-primary">
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>  
+            </div>
+        </div>
+    </div>
+</div>    
+{% endblock cuerpo %}
+{% comment %} 
+<button class="open-button" onclick="openForm()">Chat</button>
+
+<div class="chat-popup" id="myForm">
+  <form action="/action_page.php" class="form-container">
+    <h1>Chat</h1>
+
+    <label for="msg"><b>Message</b></label>
+    <textarea placeholder="Type message.." name="msg" required></textarea>
+
+    <button type="submit" class="btn">Send</button>
+    <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+  </form>
+</div>
+
+<script>
+function openForm() {
+  document.getElementById("myForm").style.display = "block";
+}
+
+function closeForm() {
+  document.getElementById("myForm").style.display = "none";
+}
+</script> {% endcomment %}

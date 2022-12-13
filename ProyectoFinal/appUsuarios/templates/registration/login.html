@@ -1,0 +1,37 @@
+{% extends 'appBlog/base.html' %}
+
+{% load static %}
+
+{% block title%}Login{% endblock title%}
+
+{% load crispy_forms_tags %}
+
+{% block cuerpo %} 
+
+<div class="About-bg">
+  <div class="container">
+     <div class="row">
+        <div class="col-md-12">
+           <div class="aboutheading">
+              <h3><span class="orange_color">Ingresar</span></h3>
+           </div>
+        </div>
+     </div>
+  </div>
+</div>
+<div class="container-fluid center">
+ <div class="card text-center" style="width: 18rem;">
+    <form action='' method='POST'>{% csrf_token %}
+      <div class="form-group">
+        {{form | crispy }}
+      </div>
+      <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
+      <p class="card-text">No tienes una cuenta? registrate</p>
+      <a href="{% url 'signup' %}" class="btn btn-success float-center">Registrar</a>
+    </form>
+  </div>
+</div>
+
+{% endblock cuerpo %} 
+{% block footer %} 
+{% endblock footer%}

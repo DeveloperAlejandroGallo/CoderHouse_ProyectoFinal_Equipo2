@@ -1,0 +1,35 @@
+  {% extends 'appBlog/base.html' %}
+
+  {% load static %}
+  
+  {% block title%}Registrarse{% endblock title%}
+  
+  {% load crispy_forms_tags %}
+  
+  {% block cuerpo %} 
+  
+  <div class="About-bg">
+    <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+              <div class="aboutheading">
+                <h3>Registro <span class="orange_color">de</span> usuario</h3>
+              </div>
+          </div>
+        </div>
+    </div>
+  </div>
+  <div class="container-fluid center">
+    <div class="card text-center" style="width: 18rem;">
+      <form action='' method='POST'>{% csrf_token %}
+        <div class="form-group">
+          {{form | crispy }}
+        </div>
+        <button type="submit" class="btn btn-success">Registrar</button>
+      </form>
+    </div>
+  </div>
+  
+  {% endblock cuerpo %} 
+  {% block footer %} 
+  {% endblock footer%}

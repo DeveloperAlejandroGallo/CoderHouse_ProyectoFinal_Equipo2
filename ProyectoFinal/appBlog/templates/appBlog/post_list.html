@@ -1,0 +1,57 @@
+{% extends 'appBlog/base.html' %}
+
+{% load static %}
+
+{% block title %} Posteos {% endblock title %}
+
+{% block cuerpo %} 
+
+      <!-- section --> 
+      <div class="About-bg">
+         <div class="container">
+            <div class="row">
+               <div class="col-md-12">
+                  <div class="aboutheading">
+                     <h3><span class="orange_color">Posteos</span></h3>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+         {% if postslist %}
+            {% for post in postslist %}
+               <!-- section: Detalle del Post para listar--> 
+               <div class="section layout_padding blog_blue_bg light_silver">
+                  <div class="container">
+                     <div class="row">
+                        <div class="col-md-8 offset-md-2">
+                           <div class="full">
+                              <div class="big_blog">
+                                 {%if post.imagen%}
+                                    <img class="img-responsive" src="{{post.imagen.url}}" alt="#" />
+                                 {% endif %}
+                                 
+                              </div>
+                              <div class="blog_cont_2">
+                                 <h3>{{post.titulo}}</h3>
+                                 <p class="sublittle">{{post.fecha}} by {{post.usuario.username}}</p>
+                                 <p >{{post.cuerpo}}</p>
+                                 {% if request.user.username == post.usuario.username %}
+                                    <a href="{% url 'Post Edit' post.id %}" class="btn btn-outline-info">Editar...</a>
+                                 {% endif %}
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <!-- end section -->
+            {% endfor %}
+         {% else %}
+            <div class="alert alert-primary" role="alert">{{mensaje}}</div>
+         {% endif%}
+         {% comment %} Por cada posteo un detail {% endcomment %}
+       </form>
+
+
+{% endblock cuerpo%} 

@@ -13,10 +13,20 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.conf import settings
+from django.conf.urls.static import static
 from django.contrib import admin
-from django.urls import path, include, re_path
+from django.urls import include, path, re_path
 
 
-urlpatterns = [
-    re_path('', include('Sitio.urls'))
+urlpatterns = (
+    [
+    path('admin/', admin.site.urls, name='admin'),
+    re_path(r"^ckeditor/", include("ckeditor_uploader.urls")),
+    re_path('', include('appBlog.urls')),
+    re_path('', include('appUsuarios.urls')),
+    path('accounts/', include('django.contrib.auth.urls')),
 ]
++ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
++ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+)

@@ -1,0 +1,75 @@
+{% extends 'appBlog/base.html' %}
+
+{% load static %}
+
+{% block title%}Sobre Nosotros{% endblock title%}
+
+{% block cabecera %}<h3>Sobre <span class="orange_color">Nosotros</span></h3>{% endblock cabecera %}
+
+{% block cuerpo %} 
+      <!-- section --> 
+      <div class="About-bg">
+        <div class="container">
+           <div class="row">
+              <div class="col-md-12">
+                 <div class="aboutheading">
+                    <h3>Sobre <span class="orange_color">Nosotros</span></h3>
+                 </div>
+              </div>
+           </div>
+        </div>
+     </div>
+
+
+      <div class="section layout_padding">
+         <div class="container">
+           
+            <div class="row">
+               <div class="col-md-6">
+                  <img src="static/appBlog/images/alanguti.jpg" alt="#" />
+               </div>
+               <div class="col-md-6">
+                <div class="full blog_cont">
+                    <h4>Alan Gutierrez</h4>
+                    <h5>Estudiante de Python</h5>
+                    <p>Alan se encargó del criterio estético del sitio y del funcionamiento del login y registro, además de asisitir a los demás en las tareas requeridas</p>
+                 </div>
+               </div>
+            </div>
+            <div class="row margin_top_30">
+               <div class="col-md-6">
+                  <img src="static/appBlog/images/alegallo.jpg" alt="#" />
+               </div>
+               <div class="col-md-6">
+                <div class="full blog_cont">
+                    <h4>Alejandro Gallo</h4>
+                    <h5>Programador</h5>
+                    <p>Ale tiene mas experiencia, hace funcionar el sitio y lleva adelante la repartición de tareas además de la cuenta de GitHub donde trabajamos. Baila Salsa como los mejores.</p>
+                 </div>
+               </div>
+            </div>
+
+            <div class="row margin_top_30">
+               <div class="col-md-6">
+                  <img src="static/appBlog/images/aleveliz.jpg" alt="#" />
+               </div>
+               <div class="col-md-6">
+                  <div class="full blog_cont">
+                    <h4>Alejandro Véliz</h4>
+                    <h5>Comprador</h5>
+                    <p>Estudiante de Python, a duras penas hizo el About y el formulario de contacto, además de algunas traducciones y asistencias. Hay que tenerle paciencia.</p>
+                  </div>
+               </div>
+            </div>
+
+            {% comment %} <div class="row margin_top_30">
+               <div class="col-md-12">
+                  <div class="button_section full center margin_top_30">
+                     <a style="margin:0;" href="">Read More</a>
+                  </div>
+               </div>
+            </div> {% endcomment %}
+         </div>
+      </div>
+      <!-- end section -->
+{% endblock cuerpo %} 

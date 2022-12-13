@@ -1,0 +1,63 @@
+{% extends 'appBlog/base.html' %}
+
+{% load static %}
+
+{% block title%}La Web de l@s Programador@s{% endblock title%}
+
+{% block cuerpo %} 
+
+      <!-- section --> 
+      <div class="About-bg">
+         <div class="container">
+            <div class="row">
+               <div class="col-md-12">
+                  <div class="aboutheading">
+                     <h3><span class="orange_color">Home</span></h3>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+<!-- revolution slider -->
+      <div class="banner-slider">
+        <div class="container-fluid">
+           <div class="row">
+              <div class="col-md-7">
+                 <div id="slider_main" class="carousel slide" data-ride="carousel">
+                    <!-- The slideshow -->
+                    <div class="carousel-inner"> 
+                       <div class="carousel-item active">
+                          <img src="{% static 'appBlog/images/paraslider2.jpg' %}" alt="#" />
+                       </div>
+                       <div class="carousel-item">
+                          <img src="{% static 'appBlog/images/paraslider1.jpg' %}" alt="#" />
+                       </div>
+                    </div>
+                    <!-- Left and right controls -->
+                    <a class="carousel-control-prev" href="#slider_main" data-slide="prev">
+                    <i class="fa fa-angle-left" aria-hidden="true"></i>
+                    </a>
+                    <a class="carousel-control-next" href="#slider_main" data-slide="next">
+                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+                 </div>
+              </div>
+              <div class="col-md-5">
+                 <div class="full slider_cont_section">
+                    <h4>Podras aprender mucho en</h4>
+                    <h3>Blog del Programador</h3>
+                    <p>Buscando resolver aquellos aspectos que pueden presentar problemas 
+                     a la hora de hacer desarrollos aplicados a 
+                     las tecnologías con las que trabajamos actualmente.</p>
+                    <div class="button_section">
+                       <a href="{% url 'About' %}">Sobre Nosotros</a>
+                       <a href="{% url 'Contact' %}">Contactenos</a>
+                    </div>
+                 </div>
+              </div>
+           </div>
+        </div>
+     </div>
+     <!-- end revolution slider -->
+
+{% endblock cuerpo %} 

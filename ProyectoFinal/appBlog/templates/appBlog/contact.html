@@ -1,0 +1,49 @@
+{% extends 'appBlog/base.html' %}
+
+{% load static %}
+
+{% block title %}Contacto{% endblock title %}
+
+{% block cuerpo %} 
+   <!-- Contact Title -->
+   <div class="About-bg">
+      <div class="container">
+         <div class="row">
+            <div class="col-md-12">
+               <div class="aboutheading">
+                  <h3><span class="orange_color">Contáctenos</span></h3>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+
+   <div class="text-center">
+   <form action="https://api.web3forms.com/submit" method="POST" id="form">
+      <fieldset>
+      <legend>Formulario de Contacto</legend>
+      <input type="hidden" name="access_key" value="9034dd8b-8fa3-4d97-a8b9-12ca6d36bc2b" />
+      <input type="hidden" name="subject" value="Nuevo mensaje de la pagina" />
+      <input type="hidden" name="redirect" value="https://web3forms.com/success" />
+      <input type="checkbox" name="botcheck" id="" style="display: none;" />
+      <div>
+         <label for="name">Nombre</label><br>
+         <input type="text" name="name" id="name" placeholder="Nombre" required />
+         <br><br>
+      </div>
+      <div>
+         <label for="email">Dirección de Email</label><br>
+         <input type="email" name="email" id="email" placeholder="Email" required /><br><br>
+      </div>
+      
+      <div>
+         <label for="message">Mensaje</label>
+         <br>
+         <textarea rows="5" name="message" id="message" placeholder="Escribe tu mensaje" required></textarea><br><br>
+      </div>
+
+      <button type="submit"> Enviar </button>
+      </fieldset>
+   </form>
+   </div>
+{% endblock cuerpo %} 
