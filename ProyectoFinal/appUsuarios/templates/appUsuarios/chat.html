@@ -2,10 +2,16 @@
 
 {% load static %}
 
-{% block cuerpo %}
+{% block title%}Mensajes{% endblock title%}
+
+{% load crispy_forms_tags %}
+
+{% block cuerpo %} 
+
 
     <div class="container-fluid mb-5">
-        <h3 class="fst-italic">{{receiver.username}}</h3>
+        <h3 class="orange_color">{{receiver.username}}</h3>
+        
         <div class="row" style="width: 95%;">        
             <div class="col">        
                 <div class="card bg-light mb-3">
@@ -33,12 +39,12 @@
                                         <div class="small text-muted mb-2">{{message.fecha_hora}}</div>
                                     {% endif %}
                                 {% endfor %}
-
+                            
                             </div>
                         </div>
                     </div>
                 </div>
-
+           
                 <div class="col-lg-4" style="width: 100%;">
                     <!-- Enter message-->
                     <div class="card mb-4">
@@ -47,7 +53,9 @@
                                 <form action="" method="POST" style="width:75%;"> {% csrf_token %}
                                     {{miMessage.as_p}}
                                     <input type="submit", value="Enviar", class="btn btn-primary">
+                                    <a href="{% url 'Inbox' %}" class="btn btn-outline-warning float-right">Ver mensajes</a>
                                 </form>
+                                
                             </div>
                         </div>
                     </div>
