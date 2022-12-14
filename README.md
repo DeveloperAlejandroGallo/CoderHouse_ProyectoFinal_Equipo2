@@ -7,12 +7,13 @@ Profesor Daniel Ochoa, Comisión #34365, Tutor Pablo Schvager, Grupo 2.
 
 ## Funcionalidades
 
-- Login y Registro de Usuarios
+- Login, registro y usuarios
 - Crear, Editar y Eliminar Posts
 - Comentarios en Posts
 - Contacto Web vía Email
 - Página de About Us
-- Completar con más cosas
+- Mensajes entre ususarios
+- perfil de usuario y edicion
 
 
 ## Instalación
@@ -38,6 +39,8 @@ Python 3.7, Django,
 
 - [@DeveloperAlejandroGallo](https://github.com/DeveloperAlejandroGallo) (Alejandro Gallo)
 - [@Alan-JG](https://github.com/Alan-JG) (Alan Gutierrez)
-- [@aleveliz75](https://github.com/Aleveliz75) (Alejandro Véliz)
+
+##video de demostracion:
+  https://drive.google.com/drive/folders/1mysBr6AehRXLwr7PKLVd0dOHhHG4f1se?usp=sharing
 
 
