@@ -34,7 +34,9 @@
                       <div class="col-md-8 offset-md-2">
                          <div class="full">
                             <div class="big_blog">
+                              {% if post.imagen%}
                                <img class="img-responsive" src="{{post.imagen.url}}" alt="#" />
+                              {% endif %}
                             </div>
                             <div class="blog_cont_2">
                                <h3>{{post.titulo}}</h3>
